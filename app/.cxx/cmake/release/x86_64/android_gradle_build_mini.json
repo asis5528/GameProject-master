@@ -1,0 +1,19 @@
+{
+  "buildFiles": [
+    "E:\\Sdk\\ndk-bundle\\build\\cmake\\android.toolchain.cmake",
+    "E:\\Sdk\\ndk-bundle\\build\\cmake\\platforms.cmake",
+    "E:\\game2\\GameProject-master\\app\\src\\main\\CMakeLists.txt"
+  ],
+  "cleanCommands": [
+    "E:\\Sdk\\cmake\\3.10.2.4988404\\bin\\ninja.exe -C \"E:\\game2\\GameProject-master\\app\\.cxx\\cmake\\release\\x86_64\" clean"
+  ],
+  "buildTargetsCommand": "E:\\Sdk\\cmake\\3.10.2.4988404\\bin\\ninja.exe  -C \"E:\\game2\\GameProject-master\\app\\.cxx\\cmake\\release\\x86_64\" {LIST_OF_TARGETS_TO_BUILD}",
+  "libraries": {
+    "native-lib-Release-x86_64": {
+      "artifactName": "native-lib",
+      "buildCommand": "E:\\Sdk\\cmake\\3.10.2.4988404\\bin\\ninja.exe -C \"E:\\game2\\GameProject-master\\app\\.cxx\\cmake\\release\\x86_64\" native-lib",
+      "abi": "x86_64",
+      "output": "E:\\game2\\GameProject-master\\app\\build\\intermediates\\cmake\\release\\obj\\x86_64\\libnative-lib.so"
+    }
+  }
+}

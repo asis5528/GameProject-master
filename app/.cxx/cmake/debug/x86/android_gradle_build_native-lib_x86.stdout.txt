@@ -1,0 +1,2 @@
+ninja: Entering directory `E:\game2\GameProject-master\app\.cxx\cmake\debug\x86'
+ninja: no work to do.
