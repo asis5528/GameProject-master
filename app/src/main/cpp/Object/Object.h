@@ -72,7 +72,8 @@ public:
         for(int i = 0;i<this->model.textures.size();i++){
 
                 glActiveTexture(GL_TEXTURE0+i);
-                glBindTexture(GL_TEXTURE_2D,model.textures[i].id);
+
+                glBindTexture(model.textures[i].type,model.textures[i].id);
                 string name = "tex"+std::to_string(i);
                 glUniform1i(glGetUniformLocation(this->shader.ID, name.c_str()), i);
 

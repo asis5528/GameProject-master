@@ -73,17 +73,27 @@ void Renderer::init() {
     quad2.setTexture(framebuffer.textures[0]);
 
     Object *bill = scene->getObject("bill");
-    bill->model.LoadTexture("Textures/bill2.png");
-
+    vector<string> paths = {"posx.png","negx.png","posy.png","negy.png","posz.png","negz.png"};
+    bill->model.LoadTexture("bill2.png");
+    Object *cube = scene->getObject("cube");
+    cube->model.LoadCubeTexture(paths);
+    Object *model = scene->getObject("model");
+    model->model.addTexture(cube->model.textures[0]);
 }
 
 void Renderer::render() {
     //cam.pos.z=3.0;
    // width = 512;
     //height = 512;
-    scene->cam.pos.y=7.6;
-    scene->cam.pos.z = sin(tim*0.5)*13.0;
-    scene->cam.pos.x = cos(tim*0.5)*13.0;
+    Object *cube = scene->getObject("cube");
+    Object *model = scene->getObject("model");
+    model->shader.use();
+    model->shader.setVec3("cameraPos",scene->cam.pos);
+   // cube->data.Rotation.y+=0.1;
+    scene->cam.pos.y=7.7;
+    float radius = 23.;
+    scene->cam.pos.z = sin(tim*0.5)*radius;
+    scene->cam.pos.x = cos(tim*0.5)*radius;
     scene->cam.update();
     tim+=0.02;
     int ind = scene->getIndex("bill");
@@ -93,6 +103,8 @@ void Renderer::render() {
    bill->shader.use();
    bill->shader.setFloat("fac",sin(tim*19.)+0.5);
    bill->shader.setFloat("test",0.1);
+   Object *tree = scene->getObject("tree");
+
    //bill->setPosition(vec3(tim,0.,0.));
 
     //__android_log_print(ANDROID_LOG_INFO,"position","%f",bill->data.Position.x);
@@ -127,7 +139,7 @@ void Renderer::render() {
 void Renderer::surfaceChanged(int w,int h) {
 
 
-    proj = glm::perspective(glm::radians(90.0f),(float)w/(float)h,0.02f,100.f);
+    proj = glm::perspective(glm::radians(60.0f),(float)w/(float)h,0.02f,100.f);
     scene->cam.projMatrix = proj;
     scene->cam.update();
     width = w;
