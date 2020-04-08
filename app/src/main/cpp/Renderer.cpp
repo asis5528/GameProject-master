@@ -72,13 +72,29 @@ void Renderer::init() {
     quad2.setTexture(fbo3.textures[0]);
     quad2.setTexture(framebuffer.textures[0]);
 
-    Object *bill = scene->getObject("bill");
+
     vector<string> paths = {"posx.png","negx.png","posy.png","negy.png","posz.png","negz.png"};
-    bill->model.LoadTexture("bill2.png");
     Object *cube = scene->getObject("cube");
     cube->model.LoadCubeTexture(paths);
-    Object *model = scene->getObject("model");
-    model->model.addTexture(cube->model.textures[0]);
+
+    Object *ceiling = scene->getObject("ceiling");
+    ceiling->model.addTexture(cube->model.textures[0]);
+
+    Object *balcony_floor = scene->getObject("balcony_floor");
+    balcony_floor->model.addTexture(cube->model.textures[0]);
+
+    Object *door_left = scene->getObject("door_left");
+    door_left->model.addTexture(cube->model.textures[0]);
+
+    Object *door_right = scene->getObject("door_right");
+    door_right->model.addTexture(cube->model.textures[0]);
+
+    Object *pillar = scene->getObject("pillar");
+    pillar->model.addTexture(cube->model.textures[0]);
+
+    Object *room = scene->getObject("room");
+    room->model.addTexture(cube->model.textures[0]);
+
 }
 
 void Renderer::render() {
@@ -86,34 +102,16 @@ void Renderer::render() {
    // width = 512;
     //height = 512;
     Object *cube = scene->getObject("cube");
-    Object *model = scene->getObject("model");
-    model->shader.use();
-    model->shader.setVec3("cameraPos",scene->cam.pos);
+
+
    // cube->data.Rotation.y+=0.1;
-    scene->cam.pos.y=7.7;
-    float radius = 23.;
-    scene->cam.pos.z = sin(tim*0.5)*radius;
-    scene->cam.pos.x = cos(tim*0.5)*radius;
+    scene->cam.pos.y=5.;
+    float radius = 70.;
+    scene->cam.pos.z = sin(tim *0.5)*radius;
+    scene->cam.pos.x = cos(tim *0.5)*radius;
     scene->cam.update();
     tim+=0.02;
-    int ind = scene->getIndex("bill");
-    //scene.objects[ind].setPosition(vec3(tim,0.,0.));
-    //scene.getObject("bill",scene.objects).setPosition(vec3(tim,0.,0.));
-   Object *bill = scene->getObject("bill");
-   bill->shader.use();
-   bill->shader.setFloat("fac",sin(tim*19.)+0.5);
-   bill->shader.setFloat("test",0.1);
-   Object *tree = scene->getObject("tree");
 
-   //bill->setPosition(vec3(tim,0.,0.));
-
-    //__android_log_print(ANDROID_LOG_INFO,"position","%f",bill->data.Position.x);
-     //bill->data.Position.x+=0.01;
-     bill->data.Rotation.y+=0.01;
-
-    // bill->updateTransform();
-    //scene.objects[2].setPosition(vec3(tim,0.,0.));
-    //bil.updateTransform();
    framebuffer.bind();
     scene->Draw();
     framebuffer.ubind();

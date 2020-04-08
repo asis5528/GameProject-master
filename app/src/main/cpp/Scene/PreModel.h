@@ -9,21 +9,29 @@ class PreModel{
 public:
     std::vector<Object> objects;
     PreModel(){
+        ObjectInit balcony_floor  = ObjectInit("balcony_floor.obj","Shaders/pbr.vert","Shaders/pbr.frag");
+        objects.push_back(balcony_floor.object);
 
+        ObjectInit ceiling = ObjectInit("ceiling.obj","Shaders/pbr.vert","Shaders/pbr.frag");
+        objects.push_back(ceiling.object);
 
-        ObjectInit terrain = ObjectInit("terrain.obj","Shaders/terrain.vert","Shaders/terrain.frag","terrain.png");
-        objects.push_back(terrain.object);
-        ObjectInit tree = ObjectInit("tree.obj","Shaders/terrain.vert","Shaders/simple.frag","tree.png");
-        objects.push_back(tree.object);
+        ObjectInit door_left = ObjectInit("door_left.obj","Shaders/pbr.vert","Shaders/pbr.frag");
+        objects.push_back(door_left.object);
 
-        ObjectInit bill = ObjectInit("bill.obj","Shaders/tree.vert","Shaders/tree.frag","billBoard.png");
-        objects.push_back(bill.object);
+        ObjectInit door_right = ObjectInit("door_right.obj","Shaders/pbr.vert","Shaders/pbr.frag");
+        objects.push_back(door_right.object);
+
+        ObjectInit pillar = ObjectInit("pillar.obj","Shaders/pbr.vert","Shaders/pbr.frag");
+        objects.push_back(pillar.object);
+
+        ObjectInit pillar_top = ObjectInit("pillar_top.obj","Shaders/pbr.vert","Shaders/pbr.frag");
+        objects.push_back(pillar_top.object);
+
+        ObjectInit room = ObjectInit("room.obj","Shaders/pbr.vert","Shaders/pbr.frag");
+        objects.push_back(room.object);
 
         ObjectInit cube = ObjectInit("cube.obj","Shaders/simple.vert","Shaders/cubemap.frag");
         objects.push_back(cube.object);
-
-        ObjectInit model = ObjectInit("model.obj","Shaders/pbr.vert","Shaders/pbr.frag");
-        objects.push_back(model.object);
     }
 
 };
