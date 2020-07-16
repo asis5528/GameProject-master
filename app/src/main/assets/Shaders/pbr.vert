@@ -13,12 +13,12 @@ uniform mat4 view;
 void main()
 {
     vec3 v = aPos;
-    normal =mat3(transpose(inverse(model))) * aNor;
-    pos = vec3(model*vec4(v,1.0));
-    position = vec3(view*vec4(pos,1.));
-    vec4 modelView = proj*vec4(position,1.);
-    gl_Position = modelView;
+
+    pos = mat3(model)*aPos;
+    position = mat3(model)*mat3(view)*aPos;
+    gl_Position = proj*view*model*vec4(aPos,1.);
 
 
-    uv = aUV;}
+    uv = aUV;
+    normal =normalize(mat3(transpose(inverse(model))) * aNor);}
 

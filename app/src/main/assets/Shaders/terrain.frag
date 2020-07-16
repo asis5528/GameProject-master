@@ -13,6 +13,6 @@ void main()
     k-=smoothstep(0.19,0.17,length(st));
     k = clamp(k,0.,1.);
     col = vec4(k);
-    FragColor = texture(tex,uv)+k;
+    FragColor = vec4(1.,0.,0.,1.);
 }
 

@@ -4,12 +4,12 @@
 #include <glm/glm.hpp>
 #include <GLES3/gl3.h>
 #include <android/asset_manager_jni.h>
-#include "Renderer.h"
+#include "Engine.h"
 #include "AssetsLoader.h"
 
 #define  LOGI(...)  __android_log_print(ANDROID_LOG_INFO,LOG_TAG,__VA_ARGS__)
 AAssetManager *mgr;
-static Renderer *ren;
+Engine *engine;
 
 
 
@@ -28,8 +28,8 @@ extern "C" JNIEXPORT void JNICALL
 Java_com_example_myapplication_GLView_00024Renderer_init(
         JNIEnv *env,
         jobject) {
-        ren = new Renderer();
-        ren->init();
+    engine = new Engine();
+    engine->init();
         //ren.init();
 }
 
@@ -38,7 +38,7 @@ extern "C" JNIEXPORT void JNICALL
 Java_com_example_myapplication_GLView_00024Renderer_render(
         JNIEnv *env,
         jobject /* this */) {
-    ren->render();
+    engine->render();
     //ren.render();
 }
 
@@ -46,6 +46,6 @@ extern "C" JNIEXPORT void JNICALL
 Java_com_example_myapplication_GLView_00024Renderer_surfaceChanged(
         JNIEnv *env,
         jobject /* this */,jint w,jint h) {
-    ren->surfaceChanged(w,h);
+    engine->surfaceChanged(w,h);
     //ren.render();
 }

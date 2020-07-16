@@ -1,52 +1,51 @@
 //
-// Created by sergio on 3/27/2020.
+// Created by sergio on 7/12/2020.
 //
 
 #ifndef MY_APPLICATION_SCENE_H
 #define MY_APPLICATION_SCENE_H
 
-#include "PreModel.h"
-class Scene{
+
+#include "../shader_manager.h"
+#include "../OpenGL/OpenGLMesh.h"
+#include "../Object/Object.h"
+
+class Scene {
 public:
-    Camera cam;
-     std::vector<Object> objects;
-    Scene(Camera camera){
-        cam = camera;
-        {
-            objects = PreModel().objects;
-        }
+    void init();
+    void Draw();
+    void resize(unsigned int width,unsigned int height);
+    void pushGLMesh(OpenGLMesh & mesh){
+        GLmeshes.push_back(mesh);
     }
-    Scene(){
-
+    void pushMesh(Mesh &mesh){
+        meshes.push_back(mesh);
+    }
+    void pushObjects(Object &object){
+        objects.push_back(object);
+    }
+    std::vector<Texture> &getTextures(){
+        return  textures;
     }
 
-    void Draw(){
-        glEnable(GL_DEPTH_TEST);
-        glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
-        glClear(GL_COLOR_BUFFER_BIT|GL_DEPTH_BUFFER_BIT );
-        for(Object object:objects){
-            object.Draw(&cam);
+private:
+    unsigned int VAO;
+    unsigned int VBO;
+    unsigned int EBO;
+    int shaderProgram;
+    Shader shader;
+    OpenGLMesh m;
+    glm::mat4 proj;
+    std::vector<Object> objects;
+    std::vector<OpenGLMesh> GLmeshes;
+    std::vector<Mesh> meshes;
+    std::vector<Texture> textures;
+    std::vector<Shader> shaders;
 
-        }
+  //  glm::vec3 camPos;
+   // float time = 0.;
 
-        }
-     Object *getObject(string name){
-        //std::vector<Object> *o = obj;
-         for(int i = 0;i<this->objects.size();i++){
-             if(objects[i].name==name){
-                 return &this->objects[i];
-                 break;
-             }
-         }
-
-    }
-        int getIndex(string name){
-            for(int i = 0;i<objects.size();i++){
-                if(objects[i].name==name){
-                    return i;
-                    break;
-                }
-            }
-    }
 };
+
+
 #endif //MY_APPLICATION_SCENE_H

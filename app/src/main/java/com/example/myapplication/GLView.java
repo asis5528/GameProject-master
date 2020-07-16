@@ -51,7 +51,7 @@ class GLView extends GLSurfaceView {
         //setEGLConfigChooser(8, 8, 8, 0, 16, 0);
         //setEGLConfigChooser(8, 8, 8, 8, 16, 16);
         setEGLContextClientVersion(3);
-        setEGLConfigChooser(8,8,8,8,16,0);
+        setEGLConfigChooser(8,8,8,8,24,0);
         setRenderer(new Renderer(context));
      //   init(true, 0, 0);
     }

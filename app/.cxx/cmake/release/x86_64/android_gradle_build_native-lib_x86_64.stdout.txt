@@ -1,55 +1,76 @@
 ninja: Entering directory `E:\game2\GameProject-master\app\.cxx\cmake\release\x86_64'
-[1/5] Building CXX object CMakeFiles/native-lib.dir/cpp/native-lib.cpp.o
-[2/5] Building CXX object CMakeFiles/native-lib.dir/cpp/Loader/vboindexer.cpp.o
-[3/5] Building CXX object CMakeFiles/native-lib.dir/cpp/Loader/objloader.cpp.o
-[4/5] Building CXX object CMakeFiles/native-lib.dir/cpp/Renderer.cpp.o
+[1/2] Building CXX object CMakeFiles/native-lib.dir/cpp/Renderer.cpp.o
 In file included from E:/game2/GameProject-master/app/src/main/cpp/Renderer.cpp:24:
 In file included from E:/game2/GameProject-master/app/src/main/cpp/Scene/Scene.h:8:
-E:/game2/GameProject-master/app/src/main/cpp/Scene/PreModel.h:14:41: warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
-        ObjectInit terrain = ObjectInit("terrain.obj","Shaders/terrain.vert","Shaders/terrain.frag","Textures/terrain.png");
-                                        ^
-E:/game2/GameProject-master/app/src/main/cpp/Scene/PreModel.h:14:55: warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
-        ObjectInit terrain = ObjectInit("terrain.obj","Shaders/terrain.vert","Shaders/terrain.frag","Textures/terrain.png");
-                                                      ^
-E:/game2/GameProject-master/app/src/main/cpp/Scene/PreModel.h:14:78: warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
-        ObjectInit terrain = ObjectInit("terrain.obj","Shaders/terrain.vert","Shaders/terrain.frag","Textures/terrain.png");
-                                                                             ^
-E:/game2/GameProject-master/app/src/main/cpp/Scene/PreModel.h:14:101: warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
-        ObjectInit terrain = ObjectInit("terrain.obj","Shaders/terrain.vert","Shaders/terrain.frag","Textures/terrain.png");
-                                                                                                    ^
-E:/game2/GameProject-master/app/src/main/cpp/Scene/PreModel.h:16:38: warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
-        ObjectInit tree = ObjectInit("tree.obj","Shaders/terrain.vert","Shaders/terrain.frag","Textures/tree.png");
+E:/game2/GameProject-master/app/src/main/cpp/Scene/PreModel.h:13:38: warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+        ObjectInit cube = ObjectInit("cube.obj","Shaders/simple.vert","Shaders/cubemap.frag");
                                      ^
-E:/game2/GameProject-master/app/src/main/cpp/Scene/PreModel.h:16:49: warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
-        ObjectInit tree = ObjectInit("tree.obj","Shaders/terrain.vert","Shaders/terrain.frag","Textures/tree.png");
+E:/game2/GameProject-master/app/src/main/cpp/Scene/PreModel.h:13:49: warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+        ObjectInit cube = ObjectInit("cube.obj","Shaders/simple.vert","Shaders/cubemap.frag");
                                                 ^
-E:/game2/GameProject-master/app/src/main/cpp/Scene/PreModel.h:16:72: warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
-        ObjectInit tree = ObjectInit("tree.obj","Shaders/terrain.vert","Shaders/terrain.frag","Textures/tree.png");
-                                                                       ^
-E:/game2/GameProject-master/app/src/main/cpp/Scene/PreModel.h:16:95: warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
-        ObjectInit tree = ObjectInit("tree.obj","Shaders/terrain.vert","Shaders/terrain.frag","Textures/tree.png");
-                                                                                              ^
-E:/game2/GameProject-master/app/src/main/cpp/Scene/PreModel.h:19:42: warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
-            ObjectInit bill = ObjectInit("bill.obj","Shaders/tree.vert","Shaders/tree.frag","Textures/billBoard.png");
-                                         ^
-E:/game2/GameProject-master/app/src/main/cpp/Scene/PreModel.h:19:53: warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
-            ObjectInit bill = ObjectInit("bill.obj","Shaders/tree.vert","Shaders/tree.frag","Textures/billBoard.png");
-                                                    ^
-E:/game2/GameProject-master/app/src/main/cpp/Scene/PreModel.h:19:73: warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
-            ObjectInit bill = ObjectInit("bill.obj","Shaders/tree.vert","Shaders/tree.frag","Textures/billBoard.png");
-                                                                        ^
-E:/game2/GameProject-master/app/src/main/cpp/Scene/PreModel.h:19:93: warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
-            ObjectInit bill = ObjectInit("bill.obj","Shaders/tree.vert","Shaders/tree.frag","Textures/billBoard.png");
-                                                                                            ^
+E:/game2/GameProject-master/app/src/main/cpp/Scene/PreModel.h:13:71: warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+        ObjectInit cube = ObjectInit("cube.obj","Shaders/simple.vert","Shaders/cubemap.frag");
+                                                                      ^
+E:/game2/GameProject-master/app/src/main/cpp/Scene/PreModel.h:16:39: warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+        ObjectInit bunny = ObjectInit("bunny.obj","Shaders/pbr.vert","Shaders/pbr.frag");
+                                      ^
+E:/game2/GameProject-master/app/src/main/cpp/Scene/PreModel.h:16:51: warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+        ObjectInit bunny = ObjectInit("bunny.obj","Shaders/pbr.vert","Shaders/pbr.frag");
+                                                  ^
+E:/game2/GameProject-master/app/src/main/cpp/Scene/PreModel.h:16:70: warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+        ObjectInit bunny = ObjectInit("bunny.obj","Shaders/pbr.vert","Shaders/pbr.frag");
+                                                                     ^
+E:/game2/GameProject-master/app/src/main/cpp/Scene/PreModel.h:18:38: warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+        ObjectInit lamp = ObjectInit("lamp.obj","Shaders/pbr.vert","Shaders/pbr.frag");
+                                     ^
+E:/game2/GameProject-master/app/src/main/cpp/Scene/PreModel.h:18:49: warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+        ObjectInit lamp = ObjectInit("lamp.obj","Shaders/pbr.vert","Shaders/pbr.frag");
+                                                ^
+E:/game2/GameProject-master/app/src/main/cpp/Scene/PreModel.h:18:68: warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+        ObjectInit lamp = ObjectInit("lamp.obj","Shaders/pbr.vert","Shaders/pbr.frag");
+                                                                   ^
+E:/game2/GameProject-master/app/src/main/cpp/Scene/PreModel.h:21:43: warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+            ObjectInit table = ObjectInit("table.obj","Shaders/pbr.vert","Shaders/pbr_simple.frag");
+                                          ^
+E:/game2/GameProject-master/app/src/main/cpp/Scene/PreModel.h:21:55: warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+            ObjectInit table = ObjectInit("table.obj","Shaders/pbr.vert","Shaders/pbr_simple.frag");
+                                                      ^
+E:/game2/GameProject-master/app/src/main/cpp/Scene/PreModel.h:21:74: warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+            ObjectInit table = ObjectInit("table.obj","Shaders/pbr.vert","Shaders/pbr_simple.frag");
+                                                                         ^
 In file included from E:/game2/GameProject-master/app/src/main/cpp/Renderer.cpp:24:
-E:/game2/GameProject-master/app/src/main/cpp/Scene/Scene.h:42:5: warning: control may reach end of non-void function [-Wreturn-type]
+E:/game2/GameProject-master/app/src/main/cpp/Scene/Scene.h:55:5: warning: control reaches end of non-void function [-Wreturn-type]
     }
     ^
-E:/game2/GameProject-master/app/src/main/cpp/Scene/Scene.h:50:5: warning: control may reach end of non-void function [-Wreturn-type]
+E:/game2/GameProject-master/app/src/main/cpp/Scene/Scene.h:65:5: warning: control may reach end of non-void function [-Wreturn-type]
     }
     ^
-E:/game2/GameProject-master/app/src/main/cpp/Renderer.cpp:76:29: warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
-    bill->model.LoadTexture("Textures/bill2.png");
+E:/game2/GameProject-master/app/src/main/cpp/Scene/Scene.h:73:5: warning: control may reach end of non-void function [-Wreturn-type]
+    }
+    ^
+E:/game2/GameProject-master/app/src/main/cpp/Renderer.cpp:73:23: warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+    quad2.LoadTexture("picture.png");
+                      ^
+E:/game2/GameProject-master/app/src/main/cpp/Renderer.cpp:81:30: warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+    bunny->model.LoadTexture("truck_emission.png");
+                             ^
+E:/game2/GameProject-master/app/src/main/cpp/Renderer.cpp:82:30: warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+    bunny->model.LoadTexture("bunny_roughness.png");
+                             ^
+E:/game2/GameProject-master/app/src/main/cpp/Renderer.cpp:83:30: warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+    bunny->model.LoadTexture("wood.png");
+                             ^
+E:/game2/GameProject-master/app/src/main/cpp/Renderer.cpp:92:29: warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+    lamp->model.LoadTexture("lamp_emission.png");
                             ^
-15 warnings generated.
-[5/5] Linking CXX shared library E:\game2\GameProject-master\app\build\intermediates\cmake\release\obj\x86_64\libnative-lib.so
+E:/game2/GameProject-master/app/src/main/cpp/Renderer.cpp:93:29: warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+    lamp->model.LoadTexture("bunny_roughness.png");
+                            ^
+E:/game2/GameProject-master/app/src/main/cpp/Renderer.cpp:94:29: warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+    lamp->model.LoadTexture("lamp_emission.png");
+                            ^
+E:/game2/GameProject-master/app/src/main/cpp/Renderer.cpp:98:30: warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+    table->model.LoadTexture("table_diffuse.png");
+                             ^
+23 warnings generated.
+[2/2] Linking CXX shared library E:\game2\GameProject-master\app\build\intermediates\cmake\release\obj\x86_64\libnative-lib.so

@@ -11,7 +11,7 @@ void main()
 
     uv = aUV;
     gl_Position = vec4(aPos.x,aPos.y,0.0,1.0);
-    float pixelSize = 1.0/height;
+    float pixelSize = 1.0/height*1.5;
     for(int i=-5;i<5;i++){
         blurTexCoords[i+5]=aUV+vec2(0.0,pixelSize*float(i));
     }

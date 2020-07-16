@@ -44,27 +44,48 @@ build CMakeFiles/native-lib.dir/cpp/native-lib.cpp.o: CXX_COMPILER__native-lib E
   INCLUDES = -IE:/game2/GameProject-master/app/src/main/cpp/glm
   OBJECT_DIR = CMakeFiles\native-lib.dir
   OBJECT_FILE_DIR = CMakeFiles\native-lib.dir\cpp
-build CMakeFiles/native-lib.dir/cpp/Renderer.cpp.o: CXX_COMPILER__native-lib E$:/game2/GameProject-master/app/src/main/cpp/Renderer.cpp || cmake_object_order_depends_target_native-lib
+build CMakeFiles/native-lib.dir/cpp/Engine.cpp.o: CXX_COMPILER__native-lib E$:/game2/GameProject-master/app/src/main/cpp/Engine.cpp || cmake_object_order_depends_target_native-lib
   DEFINES = -Dnative_lib_EXPORTS
-  DEP_FILE = CMakeFiles\native-lib.dir\cpp\Renderer.cpp.o.d
+  DEP_FILE = CMakeFiles\native-lib.dir\cpp\Engine.cpp.o.d
   FLAGS = -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -mstackrealign -D_FORTIFY_SOURCE=2 -Wformat -Werror=format-security   -O0 -fno-limit-debug-info  -fPIC
   INCLUDES = -IE:/game2/GameProject-master/app/src/main/cpp/glm
   OBJECT_DIR = CMakeFiles\native-lib.dir
   OBJECT_FILE_DIR = CMakeFiles\native-lib.dir\cpp
-build CMakeFiles/native-lib.dir/cpp/Loader/vboindexer.cpp.o: CXX_COMPILER__native-lib E$:/game2/GameProject-master/app/src/main/cpp/Loader/vboindexer.cpp || cmake_object_order_depends_target_native-lib
+build CMakeFiles/native-lib.dir/cpp/Scene/Scene.cpp.o: CXX_COMPILER__native-lib E$:/game2/GameProject-master/app/src/main/cpp/Scene/Scene.cpp || cmake_object_order_depends_target_native-lib
   DEFINES = -Dnative_lib_EXPORTS
-  DEP_FILE = CMakeFiles\native-lib.dir\cpp\Loader\vboindexer.cpp.o.d
+  DEP_FILE = CMakeFiles\native-lib.dir\cpp\Scene\Scene.cpp.o.d
+  FLAGS = -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -mstackrealign -D_FORTIFY_SOURCE=2 -Wformat -Werror=format-security   -O0 -fno-limit-debug-info  -fPIC
+  INCLUDES = -IE:/game2/GameProject-master/app/src/main/cpp/glm
+  OBJECT_DIR = CMakeFiles\native-lib.dir
+  OBJECT_FILE_DIR = CMakeFiles\native-lib.dir\cpp\Scene
+build CMakeFiles/native-lib.dir/cpp/OpenGL/OpenGLMesh.cpp.o: CXX_COMPILER__native-lib E$:/game2/GameProject-master/app/src/main/cpp/OpenGL/OpenGLMesh.cpp || cmake_object_order_depends_target_native-lib
+  DEFINES = -Dnative_lib_EXPORTS
+  DEP_FILE = CMakeFiles\native-lib.dir\cpp\OpenGL\OpenGLMesh.cpp.o.d
+  FLAGS = -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -mstackrealign -D_FORTIFY_SOURCE=2 -Wformat -Werror=format-security   -O0 -fno-limit-debug-info  -fPIC
+  INCLUDES = -IE:/game2/GameProject-master/app/src/main/cpp/glm
+  OBJECT_DIR = CMakeFiles\native-lib.dir
+  OBJECT_FILE_DIR = CMakeFiles\native-lib.dir\cpp\OpenGL
+build CMakeFiles/native-lib.dir/cpp/Loader/SceneLoader.cpp.o: CXX_COMPILER__native-lib E$:/game2/GameProject-master/app/src/main/cpp/Loader/SceneLoader.cpp || cmake_object_order_depends_target_native-lib
+  DEFINES = -Dnative_lib_EXPORTS
+  DEP_FILE = CMakeFiles\native-lib.dir\cpp\Loader\SceneLoader.cpp.o.d
   FLAGS = -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -mstackrealign -D_FORTIFY_SOURCE=2 -Wformat -Werror=format-security   -O0 -fno-limit-debug-info  -fPIC
   INCLUDES = -IE:/game2/GameProject-master/app/src/main/cpp/glm
   OBJECT_DIR = CMakeFiles\native-lib.dir
   OBJECT_FILE_DIR = CMakeFiles\native-lib.dir\cpp\Loader
-build CMakeFiles/native-lib.dir/cpp/Loader/objloader.cpp.o: CXX_COMPILER__native-lib E$:/game2/GameProject-master/app/src/main/cpp/Loader/objloader.cpp || cmake_object_order_depends_target_native-lib
+build CMakeFiles/native-lib.dir/cpp/Object/Object.cpp.o: CXX_COMPILER__native-lib E$:/game2/GameProject-master/app/src/main/cpp/Object/Object.cpp || cmake_object_order_depends_target_native-lib
   DEFINES = -Dnative_lib_EXPORTS
-  DEP_FILE = CMakeFiles\native-lib.dir\cpp\Loader\objloader.cpp.o.d
+  DEP_FILE = CMakeFiles\native-lib.dir\cpp\Object\Object.cpp.o.d
   FLAGS = -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -mstackrealign -D_FORTIFY_SOURCE=2 -Wformat -Werror=format-security   -O0 -fno-limit-debug-info  -fPIC
   INCLUDES = -IE:/game2/GameProject-master/app/src/main/cpp/glm
   OBJECT_DIR = CMakeFiles\native-lib.dir
-  OBJECT_FILE_DIR = CMakeFiles\native-lib.dir\cpp\Loader
+  OBJECT_FILE_DIR = CMakeFiles\native-lib.dir\cpp\Object
+build CMakeFiles/native-lib.dir/cpp/OpenGL/Material.cpp.o: CXX_COMPILER__native-lib E$:/game2/GameProject-master/app/src/main/cpp/OpenGL/Material.cpp || cmake_object_order_depends_target_native-lib
+  DEFINES = -Dnative_lib_EXPORTS
+  DEP_FILE = CMakeFiles\native-lib.dir\cpp\OpenGL\Material.cpp.o.d
+  FLAGS = -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -mstackrealign -D_FORTIFY_SOURCE=2 -Wformat -Werror=format-security   -O0 -fno-limit-debug-info  -fPIC
+  INCLUDES = -IE:/game2/GameProject-master/app/src/main/cpp/glm
+  OBJECT_DIR = CMakeFiles\native-lib.dir
+  OBJECT_FILE_DIR = CMakeFiles\native-lib.dir\cpp\OpenGL
 
 # =============================================================================
 # Link build statements for SHARED_LIBRARY target native-lib
@@ -73,7 +94,7 @@ build CMakeFiles/native-lib.dir/cpp/Loader/objloader.cpp.o: CXX_COMPILER__native
 #############################################
 # Link the shared library E:\game2\GameProject-master\app\build\intermediates\cmake\debug\obj\x86\libnative-lib.so
 
-build E$:/game2/GameProject-master/app/build/intermediates/cmake/debug/obj/x86/libnative-lib.so: CXX_SHARED_LIBRARY_LINKER__native-lib CMakeFiles/native-lib.dir/cpp/native-lib.cpp.o CMakeFiles/native-lib.dir/cpp/Renderer.cpp.o CMakeFiles/native-lib.dir/cpp/Loader/vboindexer.cpp.o CMakeFiles/native-lib.dir/cpp/Loader/objloader.cpp.o | E$:/Sdk/ndk-bundle/toolchains/llvm/prebuilt/windows-x86_64/sysroot/usr/lib/i686-linux-android/18/liblog.so
+build E$:/game2/GameProject-master/app/build/intermediates/cmake/debug/obj/x86/libnative-lib.so: CXX_SHARED_LIBRARY_LINKER__native-lib CMakeFiles/native-lib.dir/cpp/native-lib.cpp.o CMakeFiles/native-lib.dir/cpp/Engine.cpp.o CMakeFiles/native-lib.dir/cpp/Scene/Scene.cpp.o CMakeFiles/native-lib.dir/cpp/OpenGL/OpenGLMesh.cpp.o CMakeFiles/native-lib.dir/cpp/Loader/SceneLoader.cpp.o CMakeFiles/native-lib.dir/cpp/Object/Object.cpp.o CMakeFiles/native-lib.dir/cpp/OpenGL/Material.cpp.o | E$:/Sdk/ndk-bundle/toolchains/llvm/prebuilt/windows-x86_64/sysroot/usr/lib/i686-linux-android/18/liblog.so
   LANGUAGE_COMPILE_FLAGS = -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -mstackrealign -D_FORTIFY_SOURCE=2 -Wformat -Werror=format-security   -O0 -fno-limit-debug-info
   LINK_FLAGS = -Wl,--exclude-libs,libgcc_real.a -Wl,--exclude-libs,libatomic.a -static-libstdc++ -Wl,--build-id -Wl,--fatal-warnings -Wl,--no-undefined -Qunused-arguments
   LINK_LIBRARIES = -landroid -lEGL -llog -lGLESv3 -llog -latomic -lm

@@ -7,19 +7,37 @@
 
 {
   "directory": "E:/game2/GameProject-master/app/.cxx/cmake/release/armeabi-v7a",
-  "command": "E:\\Sdk\\ndk-bundle\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\clang++.exe --target=armv7-none-linux-androideabi18 --gcc-toolchain=E:/Sdk/ndk-bundle/toolchains/llvm/prebuilt/windows-x86_64 --sysroot=E:/Sdk/ndk-bundle/toolchains/llvm/prebuilt/windows-x86_64/sysroot  -Dnative_lib_EXPORTS -IE:/game2/GameProject-master/app/src/main/cpp/glm  -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -D_FORTIFY_SOURCE=2 -march=armv7-a -mthumb -Wformat -Werror=format-security   -Oz -DNDEBUG  -fPIC   -o CMakeFiles\\native-lib.dir\\cpp\\Renderer.cpp.o -c E:\\game2\\GameProject-master\\app\\src\\main\\cpp\\Renderer.cpp",
-  "file": "E:\\game2\\GameProject-master\\app\\src\\main\\cpp\\Renderer.cpp"
+  "command": "E:\\Sdk\\ndk-bundle\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\clang++.exe --target=armv7-none-linux-androideabi18 --gcc-toolchain=E:/Sdk/ndk-bundle/toolchains/llvm/prebuilt/windows-x86_64 --sysroot=E:/Sdk/ndk-bundle/toolchains/llvm/prebuilt/windows-x86_64/sysroot  -Dnative_lib_EXPORTS -IE:/game2/GameProject-master/app/src/main/cpp/glm  -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -D_FORTIFY_SOURCE=2 -march=armv7-a -mthumb -Wformat -Werror=format-security   -Oz -DNDEBUG  -fPIC   -o CMakeFiles\\native-lib.dir\\cpp\\Engine.cpp.o -c E:\\game2\\GameProject-master\\app\\src\\main\\cpp\\Engine.cpp",
+  "file": "E:\\game2\\GameProject-master\\app\\src\\main\\cpp\\Engine.cpp"
 },
 
 {
   "directory": "E:/game2/GameProject-master/app/.cxx/cmake/release/armeabi-v7a",
-  "command": "E:\\Sdk\\ndk-bundle\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\clang++.exe --target=armv7-none-linux-androideabi18 --gcc-toolchain=E:/Sdk/ndk-bundle/toolchains/llvm/prebuilt/windows-x86_64 --sysroot=E:/Sdk/ndk-bundle/toolchains/llvm/prebuilt/windows-x86_64/sysroot  -Dnative_lib_EXPORTS -IE:/game2/GameProject-master/app/src/main/cpp/glm  -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -D_FORTIFY_SOURCE=2 -march=armv7-a -mthumb -Wformat -Werror=format-security   -Oz -DNDEBUG  -fPIC   -o CMakeFiles\\native-lib.dir\\cpp\\Loader\\vboindexer.cpp.o -c E:\\game2\\GameProject-master\\app\\src\\main\\cpp\\Loader\\vboindexer.cpp",
-  "file": "E:\\game2\\GameProject-master\\app\\src\\main\\cpp\\Loader\\vboindexer.cpp"
+  "command": "E:\\Sdk\\ndk-bundle\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\clang++.exe --target=armv7-none-linux-androideabi18 --gcc-toolchain=E:/Sdk/ndk-bundle/toolchains/llvm/prebuilt/windows-x86_64 --sysroot=E:/Sdk/ndk-bundle/toolchains/llvm/prebuilt/windows-x86_64/sysroot  -Dnative_lib_EXPORTS -IE:/game2/GameProject-master/app/src/main/cpp/glm  -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -D_FORTIFY_SOURCE=2 -march=armv7-a -mthumb -Wformat -Werror=format-security   -Oz -DNDEBUG  -fPIC   -o CMakeFiles\\native-lib.dir\\cpp\\Scene\\Scene.cpp.o -c E:\\game2\\GameProject-master\\app\\src\\main\\cpp\\Scene\\Scene.cpp",
+  "file": "E:\\game2\\GameProject-master\\app\\src\\main\\cpp\\Scene\\Scene.cpp"
 },
 
 {
   "directory": "E:/game2/GameProject-master/app/.cxx/cmake/release/armeabi-v7a",
-  "command": "E:\\Sdk\\ndk-bundle\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\clang++.exe --target=armv7-none-linux-androideabi18 --gcc-toolchain=E:/Sdk/ndk-bundle/toolchains/llvm/prebuilt/windows-x86_64 --sysroot=E:/Sdk/ndk-bundle/toolchains/llvm/prebuilt/windows-x86_64/sysroot  -Dnative_lib_EXPORTS -IE:/game2/GameProject-master/app/src/main/cpp/glm  -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -D_FORTIFY_SOURCE=2 -march=armv7-a -mthumb -Wformat -Werror=format-security   -Oz -DNDEBUG  -fPIC   -o CMakeFiles\\native-lib.dir\\cpp\\Loader\\objloader.cpp.o -c E:\\game2\\GameProject-master\\app\\src\\main\\cpp\\Loader\\objloader.cpp",
-  "file": "E:\\game2\\GameProject-master\\app\\src\\main\\cpp\\Loader\\objloader.cpp"
+  "command": "E:\\Sdk\\ndk-bundle\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\clang++.exe --target=armv7-none-linux-androideabi18 --gcc-toolchain=E:/Sdk/ndk-bundle/toolchains/llvm/prebuilt/windows-x86_64 --sysroot=E:/Sdk/ndk-bundle/toolchains/llvm/prebuilt/windows-x86_64/sysroot  -Dnative_lib_EXPORTS -IE:/game2/GameProject-master/app/src/main/cpp/glm  -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -D_FORTIFY_SOURCE=2 -march=armv7-a -mthumb -Wformat -Werror=format-security   -Oz -DNDEBUG  -fPIC   -o CMakeFiles\\native-lib.dir\\cpp\\OpenGL\\OpenGLMesh.cpp.o -c E:\\game2\\GameProject-master\\app\\src\\main\\cpp\\OpenGL\\OpenGLMesh.cpp",
+  "file": "E:\\game2\\GameProject-master\\app\\src\\main\\cpp\\OpenGL\\OpenGLMesh.cpp"
+},
+
+{
+  "directory": "E:/game2/GameProject-master/app/.cxx/cmake/release/armeabi-v7a",
+  "command": "E:\\Sdk\\ndk-bundle\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\clang++.exe --target=armv7-none-linux-androideabi18 --gcc-toolchain=E:/Sdk/ndk-bundle/toolchains/llvm/prebuilt/windows-x86_64 --sysroot=E:/Sdk/ndk-bundle/toolchains/llvm/prebuilt/windows-x86_64/sysroot  -Dnative_lib_EXPORTS -IE:/game2/GameProject-master/app/src/main/cpp/glm  -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -D_FORTIFY_SOURCE=2 -march=armv7-a -mthumb -Wformat -Werror=format-security   -Oz -DNDEBUG  -fPIC   -o CMakeFiles\\native-lib.dir\\cpp\\Loader\\SceneLoader.cpp.o -c E:\\game2\\GameProject-master\\app\\src\\main\\cpp\\Loader\\SceneLoader.cpp",
+  "file": "E:\\game2\\GameProject-master\\app\\src\\main\\cpp\\Loader\\SceneLoader.cpp"
+},
+
+{
+  "directory": "E:/game2/GameProject-master/app/.cxx/cmake/release/armeabi-v7a",
+  "command": "E:\\Sdk\\ndk-bundle\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\clang++.exe --target=armv7-none-linux-androideabi18 --gcc-toolchain=E:/Sdk/ndk-bundle/toolchains/llvm/prebuilt/windows-x86_64 --sysroot=E:/Sdk/ndk-bundle/toolchains/llvm/prebuilt/windows-x86_64/sysroot  -Dnative_lib_EXPORTS -IE:/game2/GameProject-master/app/src/main/cpp/glm  -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -D_FORTIFY_SOURCE=2 -march=armv7-a -mthumb -Wformat -Werror=format-security   -Oz -DNDEBUG  -fPIC   -o CMakeFiles\\native-lib.dir\\cpp\\Object\\Object.cpp.o -c E:\\game2\\GameProject-master\\app\\src\\main\\cpp\\Object\\Object.cpp",
+  "file": "E:\\game2\\GameProject-master\\app\\src\\main\\cpp\\Object\\Object.cpp"
+},
+
+{
+  "directory": "E:/game2/GameProject-master/app/.cxx/cmake/release/armeabi-v7a",
+  "command": "E:\\Sdk\\ndk-bundle\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\clang++.exe --target=armv7-none-linux-androideabi18 --gcc-toolchain=E:/Sdk/ndk-bundle/toolchains/llvm/prebuilt/windows-x86_64 --sysroot=E:/Sdk/ndk-bundle/toolchains/llvm/prebuilt/windows-x86_64/sysroot  -Dnative_lib_EXPORTS -IE:/game2/GameProject-master/app/src/main/cpp/glm  -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -D_FORTIFY_SOURCE=2 -march=armv7-a -mthumb -Wformat -Werror=format-security   -Oz -DNDEBUG  -fPIC   -o CMakeFiles\\native-lib.dir\\cpp\\OpenGL\\Material.cpp.o -c E:\\game2\\GameProject-master\\app\\src\\main\\cpp\\OpenGL\\Material.cpp",
+  "file": "E:\\game2\\GameProject-master\\app\\src\\main\\cpp\\OpenGL\\Material.cpp"
 }
 ]
