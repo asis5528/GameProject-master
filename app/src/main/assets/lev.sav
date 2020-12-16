@@ -1,0 +1,20 @@
+NObjects 3
+NPrimitives 3
+NLights 0
+#prim
+nomer
+glass
+hull
+#lights
+#textures
+2D Base_Color_0.png
+cubemap environmentTex
+cubemap irradianceTex
+cubemap prefilterTex
+2D Roughtnes_0.png
+2D Base_Color_0.png
+2D Metalnes_0.png
+#objects
+nomer 0 -181.456 45.7643 -90 -0 0 0.025 0.025 0.025 0 0 0 1 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 
+glass 0 0 0 -90 -0 0 0.025 0.025 0.025 1 0 0 1 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 
+hull 0 0 0 -90 -0 0 0.025 0.025 0.025 2 5 2 3 5 4 6 2 1 1 1 1 0 0 0 0 0 0 2 0 4 3 0 0 1 0 

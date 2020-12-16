@@ -29,10 +29,10 @@ public:
     }
 
 private:
-    unsigned int VAO;
-    unsigned int VBO;
-    unsigned int EBO;
-    int shaderProgram;
+    //unsigned int VAO;
+   // unsigned int VBO;
+   // unsigned int EBO;
+   // int shaderProgram;
     Shader shader;
     OpenGLMesh m;
     glm::mat4 proj;

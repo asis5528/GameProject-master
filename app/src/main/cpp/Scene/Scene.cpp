@@ -23,7 +23,7 @@ void Scene::init(){
     Shader pbrShader = Shader("Shaders/ibl.vert","Shaders/ibl.frag");
     shaders.push_back(texturedShader);
     shaders.push_back(pbrShader);
-    SceneLoader::loadSceneData("lev.sav",this);
+    SceneLoader::loadSceneData("Room/room.sav",this);
 
 
 }
@@ -32,9 +32,9 @@ void Scene::Draw() {
     static glm::vec3 camPos;
     static float time = 0.0;
     time+=0.01;
-    camPos.x = sin(time)*11;
-    camPos.z = cos(time)*11;
-    camPos.y = 5.;
+    camPos.x = sin(time)*4;
+    camPos.z = cos(time)*4;
+    camPos.y = 2.;
    // glDepthFunc(GL_LEQUAL);
     glEnable(GL_DEPTH_TEST);
 
@@ -57,5 +57,6 @@ void Scene::Draw() {
 }
 
 void Scene::resize(unsigned int width, unsigned int height) {
+    glViewport(0,0,width,height);
     proj =glm::perspective(glm::radians(90.0f),(float)width/(float)height,0.1f,100.f);
 }

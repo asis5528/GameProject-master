@@ -15,6 +15,10 @@ struct Vertex{
     glm::vec3 Normals;
     glm::vec3 TextureCoordinates;
 };
+struct BoneInfo{
+    std::string name;
+    glm::mat4 BoneOffset;
+};
 struct Texture{
     std::string name;
     unsigned int id;
@@ -26,6 +30,7 @@ struct Texture{
 struct Mesh{
     std::vector<Vertex> vertices;
     std::vector<unsigned int> indices;
+    std::vector<BoneInfo> boneInfo;
     Mesh(){
 
     }

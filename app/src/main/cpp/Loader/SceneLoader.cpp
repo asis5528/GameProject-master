@@ -8,6 +8,7 @@
 #include "../../../../../../../Sdk/ndk-bundle/toolchains/llvm/prebuilt/windows-x86_64/sysroot/usr/include/android/log.h"
 #include "../AssetsLoader.h"
 #include <string>
+#include <glm/ext.hpp>
 
 #include "../Mesh/Mesh.h"
 #include "../stb_image.h"
@@ -28,6 +29,9 @@ void SceneLoader::loadPrimitive(std::string path,Scene *sc) {
     __android_log_print(ANDROID_LOG_INFO,"print","x %s\n",nam.c_str());
     std::vector<float> vertices;
     std::vector<unsigned int> indices;
+    std::vector<float> boneDatas;
+    std::vector<std::string> boneList;
+    std::vector<BoneInfo> boneInfo;
     std::string line;
 
     int state = 0;
@@ -68,6 +72,55 @@ void SceneLoader::loadPrimitive(std::string path,Scene *sc) {
             state = 3;
 
         }
+        else if (state == 3) {
+          //  std::cout << "loading bone/n";
+            std::string line2;
+            std::getline(iff, line2);
+            std::istringstream iss(line2);
+            float boneData;
+            boneData = std::stof(n);
+            boneDatas.push_back(boneData);
+            while (iss >> boneData) {
+                boneDatas.push_back(boneData);
+            }
+
+            state = 4;
+
+        }
+        else if (state == 4) {
+           // std::cout << "loading bone offset matrix /n";
+            std::string line2;
+            std::getline(iff, line2);
+            std::istringstream iss(line2);
+            std::string boneName;
+            //boneList.push_back(n);
+            BoneInfo bi;
+            bi.name = n;
+            float matrix[16];
+            for (int i = 0; i < 16; i++) {
+                float value;
+                iss >> value;
+                matrix[i] = value;
+
+            }
+            bi.BoneOffset = glm::make_mat4(matrix);
+            boneInfo.push_back(bi);
+            while (iss >> boneName) {
+                bi.name = boneName;
+                float matrix[16];
+                for (int i = 0; i < 16; i++) {
+                    float value;
+                    iss >> value;
+                    matrix[i] = value;
+
+                }
+                bi.BoneOffset = glm::make_mat4(matrix);
+                boneInfo.push_back(bi);
+
+            }
+
+            float k = 0.1;
+        }
         if (n == "vertexDatas") {
             state = 1;
 
@@ -96,6 +149,7 @@ void SceneLoader::loadPrimitive(std::string path,Scene *sc) {
 }
 
 void SceneLoader::loadSceneData(std::string path,Scene *sc) {
+    std::string directory = getPathName(path);
     AAsset* file = AAssetManager_open(mgr,path.c_str(),AASSET_MODE_BUFFER);
     size_t fileLength = AAsset_getLength(file);
     char* modelData = new char[fileLength];
@@ -138,7 +192,7 @@ void SceneLoader::loadSceneData(std::string path,Scene *sc) {
         }
         else if (state == 1) {
 
-            std::string finalPathName = "primitives/" + currentData;
+            std::string finalPathName = directory+"primitives/" + currentData;
             SceneLoader::loadPrimitive(finalPathName,sc);
         }
         else if (state == 2) {
@@ -146,7 +200,7 @@ void SceneLoader::loadSceneData(std::string path,Scene *sc) {
             std::string path;
             iss >> path;
             std::string fileName =  getFileName(path);
-            std::string finalPath = "Textures/"+fileName;
+            std::string finalPath = directory+"textures/"+fileName;
             if (type == "2D") {
                 loadTexture(finalPath, sc->getTextures());
             }

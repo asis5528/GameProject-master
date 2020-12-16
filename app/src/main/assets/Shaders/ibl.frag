@@ -40,13 +40,17 @@ void main()
 
     vec4 diffuseTexture = texture(DiffuseTexture,TexCoords);
     float metallic = texture(glossyTexture,TexCoords).r;
+    metallic = metalness;
     float roughnessVal = texture(roughnessTexture, TexCoords).r;
+    roughnessVal = roughness;
     const float MAX_REFLECTION_LOD = 4.0;
-    vec3 prefilteredColor = textureLod(envMap, R,2.).rgb;
+    vec3 prefilteredColor = textureLod(envMap, R,roughnessVal).rgb;
 
     vec3 irradiance = texture(IrradianceTexture, N).rgb;
+    vec3 spec = texture(IrradianceTexture, R).rgb;
     vec3 diffuse   = irradiance * diffuseTexture.rgb;
-    vec3 finalCol = mix(diffuse,prefilteredColor,metallic);
-    FragColor = vec4(texture(DiffuseTexture,TexCoords));
+    vec3 finalCol = mix(diffuse+spec*0.4,prefilteredColor,metallic);
+  //  FragColor = vec4(texture(DiffuseTexture,TexCoords));
+    FragColor = vec4(finalCol,1.);
 
 }

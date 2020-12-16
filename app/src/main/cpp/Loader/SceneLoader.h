@@ -40,6 +40,15 @@ private:
         }
         return "";
     }
+    static std::string getPathName(const std::string& s) {
+
+        char sep = '/';
+        size_t i = s.rfind(sep, s.length());
+        if (i != std::string::npos) {
+            return(s.substr(0, i)+"/");
+        }
+        return("");
+    }
 
 
 };

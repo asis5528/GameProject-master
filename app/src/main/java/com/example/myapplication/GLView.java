@@ -82,9 +82,14 @@ class GLView extends GLSurfaceView {
         private  native void render();
         private native void surfaceChanged(int w,int h);
         private native void setAssetManager(AssetManager mgr);
+        private native void sendIn(float a);
         private Context context;
+
+
+
         public void onDrawFrame(GL10 gl) {
             //GL2JNILib.step();
+
             render();
         }
 
@@ -97,8 +102,10 @@ class GLView extends GLSurfaceView {
             // Do nothing.
             //GLES20.glClearColor(1.f,0.f,0.f,1.f);
             //GLES20.glClear(GLES20.GL_COLOR_BUFFER_BIT);
+
             setAssetManager(context.getAssets());
             init();
+            sendIn(4.2f);
         }
         public Renderer(Context c){
             context = c;

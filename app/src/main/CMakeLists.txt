@@ -20,7 +20,7 @@ add_library( # Sets the name of the library.
         SHARED
 
         # Provides a relative path to your source file(s).
-        cpp/native-lib.cpp cpp/Engine.cpp cpp/Scene/Scene.cpp cpp/OpenGL/OpenGLMesh.cpp cpp/Loader/SceneLoader.cpp cpp/Object/Object.cpp cpp/OpenGL/Material.cpp)
+        cpp/native-lib.cpp cpp/Engine.cpp cpp/Scene/Scene.cpp cpp/OpenGL/OpenGLMesh.cpp cpp/Loader/SceneLoader.cpp cpp/Object/Object.cpp cpp/OpenGL/Material.cpp cpp/Animation/AnimationData.cpp cpp/Animation/Animation.cpp)
 #add_library(libassimp STATIC IMPORTED)
 #set_target_properties(libassimp PROPERTIES IMPORTED_LOCATION ${CMAKE_SOURCE_DIR}/jni/Assimp_libs/cmake/release/${ANDROID_ABI}/libassimp.a)
 

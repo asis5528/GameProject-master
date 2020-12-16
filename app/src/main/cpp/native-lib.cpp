@@ -17,8 +17,8 @@ extern "C" JNIEXPORT void JNICALL
 Java_com_example_myapplication_GLView_00024Renderer_setAssetManager(
         JNIEnv *env,
         jobject,jobject assetManager) {
-      mgr = AAssetManager_fromJava(env,assetManager);
-     // env->DeleteGlobalRef(assetManager);
+    mgr = AAssetManager_fromJava(env,assetManager);
+    // env->DeleteGlobalRef(assetManager);
 
 }
 
@@ -30,7 +30,7 @@ Java_com_example_myapplication_GLView_00024Renderer_init(
         jobject) {
     engine = new Engine();
     engine->init();
-        //ren.init();
+    //ren.init();
 }
 
 
@@ -40,6 +40,11 @@ Java_com_example_myapplication_GLView_00024Renderer_render(
         jobject /* this */) {
     engine->render();
     //ren.render();
+}
+extern  "C" JNIEXPORT void JNICALL
+Java_com_example_myapplication_GLView_00024Renderer_sendIn(JNIEnv *env,jobject /* this */,jfloat a){
+    __android_log_print(ANDROID_LOG_INFO,"print","see below");
+    __android_log_print(ANDROID_LOG_INFO,"print","x %f\n",a);
 }
 
 extern "C" JNIEXPORT void JNICALL
