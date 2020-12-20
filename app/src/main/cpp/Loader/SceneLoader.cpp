@@ -13,6 +13,8 @@
 #include "../Mesh/Mesh.h"
 #include "../stb_image.h"
 #include "../OpenGL/Material.h"
+#include "../Animation/AnimationData.h"
+#include "../Animation/Animation.h"
 
 void SceneLoader::loadPrimitive(std::string path,Scene *sc) {
     path+=".pribln";
@@ -127,6 +129,7 @@ void SceneLoader::loadPrimitive(std::string path,Scene *sc) {
         }
     }
     std::vector<Vertex> verts;
+    std::vector<VertexBoneData> bones;
     for (int i = 0; i < vertices.size() / 8; i++) {
         Vertex v;
         v.Position.x = vertices[i * 8 + 0];
@@ -140,13 +143,182 @@ void SceneLoader::loadPrimitive(std::string path,Scene *sc) {
 
         verts.push_back(v);
     }
-    Mesh mesh = Mesh(verts,indices);
+    for (int i = 0; i < boneDatas.size() / 8; i++) {
+        VertexBoneData bone;
+        bone.IDs[0] = boneDatas[i * 8 + 0];
+        bone.IDs[1] = boneDatas[i * 8 + 1];
+        bone.IDs[2] = boneDatas[i * 8 + 2];
+        bone.IDs[3] = boneDatas[i * 8 + 3];
+        bone.Weights[0]= boneDatas[i * 8 + 4];
+        bone.Weights[1] = boneDatas[i * 8 + 5];
+        bone.Weights[2] = boneDatas[i * 8 + 6];
+        bone.Weights[3] = boneDatas[i * 8 + 7];
+        bones.push_back(bone);
+    }
+
+    Mesh mesh = Mesh(verts,indices,bones);
+    mesh.boneInfo=boneInfo;
+
     sc->pushMesh(mesh);
     OpenGLMesh openGlMesh;
-    openGlMesh.init(mesh.vertices,mesh.indices);
+    openGlMesh.init(mesh.vertices,mesh.indices,mesh.bones);
     sc->pushGLMesh(openGlMesh);
     //sc->pushGLMesh()
 }
+
+
+static void loadAnimation(std::string path,Animation &animation) {
+    std::string fullname = path + ".anibln";
+
+
+    AAsset* file = AAssetManager_open(mgr,fullname.c_str(),AASSET_MODE_BUFFER);
+    size_t fileLength = AAsset_getLength(file);
+    char* modelData = new char[fileLength];
+    AAsset_read(file, modelData, fileLength);
+
+    std::istringstream iff(modelData);
+    std::string line;
+    //AnimationData adata;
+
+    std::string parent;
+    std::string child;
+    //std::getline(iff, line);
+    //iff >> parent; iff >> child;
+    std::string j;
+    iff >> animation.name;
+    float duration;
+    iff >> duration;
+    float tick;
+    iff >> tick;
+    unsigned int keyframeSize = 0;
+    iff >> keyframeSize;
+    unsigned int BoneIndex = 0;
+
+    animation.duration = duration;
+    animation.ticksperSec = tick;
+    std::string useless;
+    iff >> useless;
+    unsigned int actionSize;
+    iff >> actionSize;
+    std::vector<AnimationAction> actions;
+
+    for (unsigned int i = 0; i < actionSize; i++) {
+        std::cout << "lets start animation : " <<i <<"\n";
+        std::string name;
+        float x, y;
+        iff >> name;
+        iff >> x;
+        iff >> y;
+        AnimationAction ac;
+        ac.name = name;
+        ac.range = glm::vec2(x, y);
+        actions.push_back(ac);
+    }
+    //std::cout << "lets start animation" << "\n";
+    animation.actions = actions;
+    unsigned int state = 0;
+    std::vector<std::vector<AnimationTransformation>> AnimationTransformationData;
+    std::vector<AnimationTransformation> AnimT;
+    std::vector<AnimationTransformation>* AT = &AnimT;
+
+    while (std::getline(iff, line)) {
+
+        std::string firstValue;
+        iff >> firstValue;
+        if (firstValue.size() > 0) {
+
+            if (firstValue.at(0) == '#') {
+                //state = 1;
+
+                iff >> firstValue;
+                //std::cout << "bones " << AnimationTransformationData.size() << "\n";
+                AnimationTransformationData.resize(AnimationTransformationData.size() + 1);
+                AT = &AnimationTransformationData[AnimationTransformationData.size()-1];
+            }
+            if (firstValue == "AnimationTree") {
+
+                iff >> parent; iff >> child;
+                animation.adata.name = parent;
+                AnimationData childdata;
+                childdata.name = child;
+                childdata.animationTransformation = AnimationTransformationData[BoneIndex];
+                BoneIndex+=1;
+                animation.adata.childAnimationData.push_back(childdata);
+                state = 1;
+                iff >> firstValue;
+            }
+
+            //if()
+            if (state == 0) {
+
+                AnimationTransformation at;
+                glm::vec3 pos;
+                pos.x = std::stof(firstValue);
+                iff >> pos.y;
+                iff >> pos.z;
+                at.position = pos;
+                glm::vec3 scale;
+                iff >> scale.x;
+                iff >> scale.y;
+                iff >> scale.z;
+                at.scale = scale;
+                glm::quat rot;
+                iff >> rot.w;
+                iff >> rot.x;
+                iff >> rot.y;
+                iff >> rot.z;
+                at.rotation = rot;
+                float time;
+                iff >> time;
+                at.time = time;
+                std::string line;
+                AT->push_back(at);
+                //iff >> line;
+                //iff >> line;
+                float j = 5;
+
+
+            }
+            else if (state == 1) {
+                std::string parent = firstValue;
+                std::string child;
+                iff >> child;
+                bool node = SceneLoader::searchNode(animation.adata, parent, child, AnimationTransformationData[BoneIndex]);
+                //node->animationTransformation = AnimationTransformationData[BoneIndex];
+                BoneIndex += 1;
+                //AnimationData childData;
+                //childData.name = child;
+                //parentdata->childAnimationData.push_back(childdata);
+                //	float n = 1;
+            }
+
+        }
+
+
+    }
+
+    float k = 1.334;
+
+
+}
+bool  SceneLoader::searchNode(AnimationData& adata, std::string Parentname,std::string Childname,std::vector<AnimationTransformation> &ATT) {
+    if (Parentname == adata.name) {
+        AnimationData childData;
+        childData.name = Childname;
+        childData.animationTransformation = ATT;
+        adata.childAnimationData.push_back(childData);
+        return true;
+
+
+    }
+    for (int i = 0; i < adata.childAnimationData.size(); i++) {
+        SceneLoader::searchNode(adata.childAnimationData[i], Parentname, Childname,ATT);
+    }
+    return true;
+
+}
+
+
 
 void SceneLoader::loadSceneData(std::string path,Scene *sc) {
     std::string directory = getPathName(path);
@@ -167,35 +339,32 @@ void SceneLoader::loadSceneData(std::string path,Scene *sc) {
             std::string nobjects;
             iss >> nobjects;
             NObjects = std::stoi(nobjects);
-
         }
         if (currentData == "NPrimitives") {
             std::string nprimitives;
             iss >> nprimitives;
             NPrimitives = std::stoi(nprimitives);
-
         }
-
         if (currentData == "#prim") {
             state = 1;
-
         }
-        else if (currentData == "#textures") {
-            state = 2;
+        else if(currentData=="#animations"){
+            state=2;
         }
         else if (currentData == "#lights") {
-            state = 4;
-
-        }
-        else if (currentData == "#objects") {
             state = 3;
         }
+        else if (currentData == "#textures") {
+            state = 4;
+        }
+        else if (currentData == "#objects") {
+            state = 5;
+        }
         else if (state == 1) {
-
             std::string finalPathName = directory+"primitives/" + currentData;
             SceneLoader::loadPrimitive(finalPathName,sc);
         }
-        else if (state == 2) {
+        else if (state == 4) {
             std::string type = currentData;
             std::string path;
             iss >> path;
@@ -207,19 +376,26 @@ void SceneLoader::loadSceneData(std::string path,Scene *sc) {
             else if(type=="cubemap"){
                 loadCubeMapTexture(finalPath,sc->getTextures());
             }
-
         }
-        else if (state == 4) {
 
-
-
+        else if (state == 2) {
+            std::string finalPathName = directory+"animations/"+currentData;
+            Animation animation;
+            loadAnimation(finalPathName,animation);
+            sc->pushAnimation(animation);
         }
+
         else if (state == 3) {
+
+        }
+        else if (state == 5) {
             std::string name = currentData;
             glm::vec3 pos;
             glm::vec3 scale;
             glm::vec3 rotation;
             unsigned int primitiveIndex;
+            unsigned int animationSize = 0;
+            unsigned int animationID = 0;
             unsigned int textureSize;
             std::vector<unsigned int> textureIDS;
             unsigned int materialmodeindex;
@@ -234,6 +410,10 @@ void SceneLoader::loadSceneData(std::string path,Scene *sc) {
             iss >> scale.y;
             iss >> scale.z;
             iss >> primitiveIndex;
+            iss >> animationSize;
+            for(unsigned int i=0;i<animationSize;i++){
+                iss >> animationID;
+            }
             iss >> textureSize;
             for (int i = 0; i < textureSize; i++) {
                 unsigned int ID;
@@ -242,9 +422,7 @@ void SceneLoader::loadSceneData(std::string path,Scene *sc) {
             }
             iss >> materialmodeindex;
             for (int j = 0; j < 4; j++) {
-
                 iss >> objectColor[j];
-
             }
             Material::Mode m = static_cast<Material::Mode>(materialmodeindex);
             Material def(m);
@@ -262,13 +440,15 @@ void SceneLoader::loadSceneData(std::string path,Scene *sc) {
             iss >> def.brdfTexture;
             iss >> def.environmentTexture;
             iss >> def.irradianceTexture;
-
             Object object;
             object.init(primitiveIndex,name,def);
             object.position = pos;
             object.rotation = rotation;
             object.scale = scale;
             object.seTexturesID(textureIDS);
+            if(animationSize>0){
+                object.animationIDs.push_back(animationID);
+            }
             sc->pushObjects(object);
 
 
@@ -294,15 +474,11 @@ unsigned int SceneLoader::LoadTextureData(const char *path, int &width, int &hei
 
 
     std::vector<uint8_t> buf;
-    AAsset* file = AAssetManager_open(mgr,
-                                      path, AASSET_MODE_BUFFER);
+    AAsset* file = AAssetManager_open(mgr,path, AASSET_MODE_BUFFER);
 
     size_t fileLength = AAsset_getLength(file);
     buf.resize(fileLength);
     int64_t  readSize = AAsset_read(file,buf.data(),buf.size());
-
-
-
     unsigned int textureID;
     glGenTextures(1, &textureID);
     stbi_set_flip_vertically_on_load(0);
@@ -322,17 +498,14 @@ unsigned int SceneLoader::LoadTextureData(const char *path, int &width, int &hei
         glBindTexture(GL_TEXTURE_2D, textureID);
         glTexImage2D(GL_TEXTURE_2D, 0, format, width, height, 0, format, GL_UNSIGNED_BYTE, imageBits);
         glGenerateMipmap(GL_TEXTURE_2D);
-
         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);
         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-
         stbi_image_free(imageBits);
     }
     else
     {
-
         stbi_image_free(imageBits);
     }
 
@@ -365,7 +538,6 @@ unsigned int  SceneLoader::LoadCubeMapTextureData(std::vector<std::string> faces
     for (unsigned int i = 0; i < faces.size(); i++)
     {
         std::string filename = std::string(faces[0]);
-
         std::vector<uint8_t> buf;
         AAsset* file = AAssetManager_open(mgr,
                                           faces[i].c_str(), AASSET_MODE_BUFFER);

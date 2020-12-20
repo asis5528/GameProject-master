@@ -1,27 +1,13 @@
 NObjects 1
 NPrimitives 1
 NAnimations 1
-NLights 3
+NLights 0
 #prim
 schorty002
 #animations
-Animation0
+animation0
 #lights
-Light0 0 0 0 0 9.9999e-07 1e-06 1e-06 800
-Light1 0 -7.22011 20.349 -2.47671 1e-06 9.99999e-07 9.9999e-07 800
-Light2 0 -7.3733 21.5397 -2.48109 0.99999 0.999998 1 1200
 #textures
-2D GerlMaterial_Metalness.tga.png
-2D GerlMaterial_Normal.tga.png
-2D GerlMaterial_Opacity.tga.png
-2D GerlMaterial_Roughness.tga.png
-2D GerlMaterial_ao.tga.png
 2D GerlMaterial_BaseColor.tga.png
-2D GerlMaterial_EmissiveColor.tga.png
-2D shutterstock_1711735978_edited_1_1500x850.jpg
-cubemap environmentTex
-cubemap irradianceTex
-cubemap prefilterTex
-2D brdf.PNG
 #objects
-schorty002 -7.25944 6.23069 -8.44756 0 -0 0 0.01 0.01 0.01 0 1 0 8 5 1 0 3 4 10 9 11 2 1 1 1 1 1 1 0 0 0 0 0 1 2 3 0 7 5 6 
+schorty002 0 0 0 0 -0 0 0.01 0.01 0.01 0 1 0 1 0 1 1 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 

@@ -11,7 +11,7 @@
 #include "../Mesh/Mesh.h"
 class OpenGLMesh {
 public:
-    void init(std::vector<Vertex> vertex,std::vector<unsigned  int> indices);
+    void init(std::vector<Vertex> &vertex,std::vector<unsigned  int> &indices,std::vector<VertexBoneData> &bones);
     void Render(Shader &shader);
 
 private:

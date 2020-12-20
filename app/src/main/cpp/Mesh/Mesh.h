@@ -19,6 +19,12 @@ struct BoneInfo{
     std::string name;
     glm::mat4 BoneOffset;
 };
+struct VertexBoneData
+{
+    unsigned int IDs[4] = { 0,0,0,0 };
+    float Weights[4] = { 0.0,0.0,0.0,0.0 };
+
+};
 struct Texture{
     std::string name;
     unsigned int id;
@@ -30,13 +36,15 @@ struct Texture{
 struct Mesh{
     std::vector<Vertex> vertices;
     std::vector<unsigned int> indices;
+    std::vector<VertexBoneData> bones;
     std::vector<BoneInfo> boneInfo;
     Mesh(){
 
     }
-    Mesh(std::vector<Vertex> vertices,std::vector<unsigned int> indices){
+    Mesh(std::vector<Vertex> &vertices,std::vector<unsigned int> &indices,std::vector<VertexBoneData> &bones){
         this->vertices = vertices;
         this->indices = indices;
+        this->bones = bones;
     }
 
 

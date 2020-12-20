@@ -9,6 +9,7 @@
 #include "../shader_manager.h"
 #include "../OpenGL/OpenGLMesh.h"
 #include "../Object/Object.h"
+#include "../Animation/Animation.h"
 
 class Scene {
 public:
@@ -27,6 +28,9 @@ public:
     std::vector<Texture> &getTextures(){
         return  textures;
     }
+    void pushAnimation(Animation &animation){
+        animations.push_back(animation);
+    }
 
 private:
     //unsigned int VAO;
@@ -41,6 +45,7 @@ private:
     std::vector<Mesh> meshes;
     std::vector<Texture> textures;
     std::vector<Shader> shaders;
+    std::vector<Animation> animations;
 
   //  glm::vec3 camPos;
    // float time = 0.;

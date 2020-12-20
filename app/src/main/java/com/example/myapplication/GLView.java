@@ -45,7 +45,11 @@ class GLView extends GLSurfaceView {
     private static String TAG = "GL2JNIView";
     private static final boolean DEBUG = false;
 
+    static {
+        System.loadLibrary("native-lib");
 
+    }
+    private native void TouchDownCallBack(float x,float y);
     public GLView(Context context) {
         super(context);
         //setEGLConfigChooser(8, 8, 8, 0, 16, 0);
@@ -56,7 +60,78 @@ class GLView extends GLSurfaceView {
      //   init(true, 0, 0);
     }
 
+    @Override
+    public boolean onTouchEvent(MotionEvent event)
+    {
 
+        if (event != null)
+        {
+
+            int action = event.getActionMasked();
+
+            float x = event.getX(0);
+            float y = event.getY(0);
+
+            float tx[] = new float[2];
+            float ty[] = new float[2];
+          //  System.out.println("x");
+            //System.out.println(x);
+            TouchDownCallBack(x,y);
+            float count = event.getPointerCount();
+
+            if(event.getAction()==MotionEvent.ACTION_UP){
+
+
+            }
+            if(event.getAction()==MotionEvent.ACTION_DOWN){
+
+
+            }
+
+            if(event.getAction() == MotionEvent.ACTION_UP){
+
+            }
+
+
+            if(action == MotionEvent.ACTION_POINTER_UP){
+
+
+                if(event.getAction() == MotionEvent.ACTION_POINTER_UP){
+
+                }
+                else {
+
+
+
+                }
+
+            }
+            if(event.getAction() == MotionEvent.ACTION_UP){
+
+            }
+
+            //mRenderer.TouchX = x;
+            //mRenderer.TouchY = y;
+            //mRenderer.MultiTouchX = tx;
+            //mRenderer.MultiTouchY = ty;
+
+
+
+            if (event.getAction() == MotionEvent.ACTION_MOVE) {
+
+
+                }
+
+
+            return true;
+        }
+        else
+        {
+            return super.onTouchEvent(event);
+        }
+
+
+    }
 
     private static class Renderer implements GLSurfaceView.Renderer {
         /*
@@ -71,10 +146,7 @@ class GLView extends GLSurfaceView {
 
     }
 */
-    static {
-            System.loadLibrary("native-lib");
 
-        }
 
 
 
@@ -82,7 +154,7 @@ class GLView extends GLSurfaceView {
         private  native void render();
         private native void surfaceChanged(int w,int h);
         private native void setAssetManager(AssetManager mgr);
-        private native void sendIn(float a);
+
         private Context context;
 
 
@@ -105,7 +177,7 @@ class GLView extends GLSurfaceView {
 
             setAssetManager(context.getAssets());
             init();
-            sendIn(4.2f);
+
         }
         public Renderer(Context c){
             context = c;

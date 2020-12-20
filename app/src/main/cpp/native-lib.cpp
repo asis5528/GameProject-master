@@ -20,8 +20,9 @@ Java_com_example_myapplication_GLView_00024Renderer_setAssetManager(
     mgr = AAssetManager_fromJava(env,assetManager);
     // env->DeleteGlobalRef(assetManager);
 
-}
 
+
+}
 
 
 extern "C" JNIEXPORT void JNICALL
@@ -42,9 +43,10 @@ Java_com_example_myapplication_GLView_00024Renderer_render(
     //ren.render();
 }
 extern  "C" JNIEXPORT void JNICALL
-Java_com_example_myapplication_GLView_00024Renderer_sendIn(JNIEnv *env,jobject /* this */,jfloat a){
-    __android_log_print(ANDROID_LOG_INFO,"print","see below");
-    __android_log_print(ANDROID_LOG_INFO,"print","x %f\n",a);
+Java_com_example_myapplication_GLView_TouchDownCallBack(JNIEnv *env,jobject /* this */,jfloat x,jfloat y){
+    engine->TouchCallBack(x,y);
+
+
 }
 
 extern "C" JNIEXPORT void JNICALL

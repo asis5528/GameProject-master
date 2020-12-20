@@ -4,7 +4,7 @@ layout (location = 0) out vec4 FragColor;
 in vec2 TexCoords;
 in vec3 normal;
 in vec3 modelMatPos;
-
+in vec4 weight;
 uniform bool bloom;
 uniform bool BloomTexture;
 
@@ -52,5 +52,5 @@ void main()
     vec3 finalCol = mix(diffuse+spec*0.4,prefilteredColor,metallic);
   //  FragColor = vec4(texture(DiffuseTexture,TexCoords));
     FragColor = vec4(finalCol,1.);
-
+FragColor=weight;
 }

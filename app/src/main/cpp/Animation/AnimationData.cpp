@@ -1,7 +1,7 @@
 //
 // Created by sergio on 9/5/2020.
 //
-
+/*
 #include "AnimationData.h"
 #include <glm/gtx/quaternion.hpp>
 #include <glm/glm.hpp>
@@ -90,6 +90,6 @@ void AnimationData::CalcInterpolatedScale(glm::vec3 &Out, float AnimationTime,
 
 
 
-
+*/
 
 

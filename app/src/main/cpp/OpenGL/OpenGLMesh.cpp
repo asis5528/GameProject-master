@@ -5,7 +5,7 @@
 #include "OpenGLMesh.h"
 
 
-void OpenGLMesh::init(std::vector<Vertex> vertices, std::vector<unsigned int> indices) {
+void OpenGLMesh::init(std::vector<Vertex> &vertices, std::vector<unsigned int> &indices,std::vector<VertexBoneData> &bones) {
     indicesSize = indices.size();
     glGenVertexArrays(1, &VAO);
     glGenBuffers(1, &VBO);
@@ -19,6 +19,7 @@ void OpenGLMesh::init(std::vector<Vertex> vertices, std::vector<unsigned int> in
     glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO);
     glBufferData(GL_ELEMENT_ARRAY_BUFFER,indices.size() * sizeof(unsigned int), &indices[0], GL_STATIC_DRAW);
 
+    //We only have vertex position,normals and texture coordinate in Vertex Structure
     glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(Vertex), (void*)0);
     glEnableVertexAttribArray(0);
     glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, sizeof(Vertex), (void*)(3* sizeof(float)));
@@ -26,15 +27,22 @@ void OpenGLMesh::init(std::vector<Vertex> vertices, std::vector<unsigned int> in
     glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, sizeof(Vertex), (void*)(6* sizeof(float)));
     glEnableVertexAttribArray(2);
 
-    // note that this is allowed, the call to glVertexAttribPointer registered VBO as the vertex attribute's bound vertex buffer object so afterwards we can safely unbind
+
     glBindBuffer(GL_ARRAY_BUFFER, 0);
+    //checking if any bones is there,if we will allocate vertex buffer for bone data
+    if(bones.size()>0){
+        unsigned int VBO1;
+        glGenBuffers(1, &VBO1);
+        glBindBuffer(GL_ARRAY_BUFFER, VBO1);
+        glBufferData(GL_ARRAY_BUFFER, bones.size() * sizeof(VertexBoneData), &bones[0], GL_STATIC_DRAW);
+        glEnableVertexAttribArray(3);
+        glVertexAttribIPointer(3, 4, GL_UNSIGNED_INT, sizeof(VertexBoneData), (void*)0);
+        glEnableVertexAttribArray(4);
+        glVertexAttribPointer(4, 4, GL_FLOAT, GL_FALSE, sizeof(VertexBoneData), (void*)16);
+        glBindBuffer(GL_ARRAY_BUFFER, 0);
+    }
 
-    // remember: do NOT unbind the EBO while a VAO is active as the bound element buffer object IS stored in the VAO; keep the EBO bound.
-    //glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
-
-    // You can unbind the VAO afterwards so other VAO calls won't accidentally modify this VAO, but this rarely happens. Modifying other
-    // VAOs requires a call to glBindVertexArray anyways so we generally don't unbind VAOs (nor VBOs) when it's not directly necessary.
-
+    //unbinding vao
     glBindVertexArray(0);
 }
 void OpenGLMesh::Render(Shader &shader) {

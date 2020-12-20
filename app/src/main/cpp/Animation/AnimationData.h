@@ -12,7 +12,7 @@
 #include <vector>
 #include <string>
 
-struct KeyFrameTransformation{
+struct AnimationTransformation{
     glm::vec3 position;
     glm::quat rotation;
     glm::vec3 scale;
@@ -22,24 +22,13 @@ struct KeyFrameTransformation{
 };
 class AnimationData {
 public:
-    void readAnimation(float time,AnimationData &data,glm::mat4 &parentMatrix);
+    std::string name;
+    std::vector<AnimationTransformation> animationTransformation;
+    std::vector<AnimationData> childAnimationData;
+    unsigned int index;
 
 private:
-    std::string name;
-    std::vector<KeyFrameTransformation> animationTransformation;
-    float duration;
-    float tickperSec;
-    glm::mat4 boneOffset;
-    std::vector<glm::mat4> outMatrices;
-    bool anim = false;
-    std::vector<AnimationData> childAnimationData;
 
-
-
-    void CalcInterpolatedPosition(glm::vec3 &Out,float AnimationTime,AnimationData& data);
-    void CalcInterpolatedScale(glm::vec3 &Out,float AnimationTime,AnimationData& data);
-    void CalcInterpolatedRotation(glm::vec3 &Out,float AnimationTime,AnimationData& data);
-    unsigned int FindKeyFrameIndex(float AnimationTime,AnimationData &data);
 
 
 };

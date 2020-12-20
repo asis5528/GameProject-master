@@ -10,6 +10,7 @@
 #include "../Mesh/Mesh.h"
 
 #include "../Scene/Scene.h"
+#include "../Animation/AnimationData.h"
 
 class SceneLoader {
 public:
@@ -20,8 +21,10 @@ public:
     }
     static void loadSceneData(std::string path,Scene *sc);
     static void loadPrimitive(std::string path,Scene *sc);
+    static bool searchNode(AnimationData& adata, std::string Parentname,std::string Childname,std::vector<AnimationTransformation> &ATT);
 
 private:
+
     static void loadTexture(std::string path,std::vector<Texture>& textures);
     static unsigned int LoadTextureData(const char* path, int &width, int &height,GLenum &format);
     static void loadCubeMapTexture(std::string path,std::vector<Texture>& textures);

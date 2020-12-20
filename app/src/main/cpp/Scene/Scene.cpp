@@ -23,12 +23,15 @@ void Scene::init(){
     Shader pbrShader = Shader("Shaders/ibl.vert","Shaders/ibl.frag");
     shaders.push_back(texturedShader);
     shaders.push_back(pbrShader);
-    SceneLoader::loadSceneData("Room/room.sav",this);
+    SceneLoader::loadSceneData("Girl/girl.sav",this);
 
 
 }
 
 void Scene::Draw() {
+    if(this->animations.size()>0){
+        float n = 1.0;
+    }
     static glm::vec3 camPos;
     static float time = 0.0;
     time+=0.01;
@@ -46,10 +49,17 @@ void Scene::Draw() {
 
     for(Object& object:objects ){
         object.mat.set(shaders,textures,object.textureID);
+        object.position.x=-0.;
+        object.position.z=-0.;
+        object.position.y=-2.;
+        object.scale= glm::vec3(0.003);
         object.mat.start(camPos);
         object.mat.shad->use();
         object.mat.shad->setMat4("view",view);
         object.mat.shad->setMat4("projection",proj);
+        if(object.animationIDs.size()>0){
+            object.processAnimation(meshes[object.primitiveID],animations[object.animationIDs[0]]);
+        }
         object.Render(GLmeshes[object.primitiveID]);
     }
 
