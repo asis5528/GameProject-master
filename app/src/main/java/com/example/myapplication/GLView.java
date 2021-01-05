@@ -49,7 +49,8 @@ class GLView extends GLSurfaceView {
         System.loadLibrary("native-lib");
 
     }
-    private native void TouchDownCallBack(float x,float y);
+    private native void TouchDownCallBack(float x,float y,int act);
+    private native void TouchMoveCallBack(float x,float y);
     public GLView(Context context) {
         super(context);
         //setEGLConfigChooser(8, 8, 8, 0, 16, 0);
@@ -72,19 +73,23 @@ class GLView extends GLSurfaceView {
             float x = event.getX(0);
             float y = event.getY(0);
 
+
             float tx[] = new float[2];
             float ty[] = new float[2];
-          //  System.out.println("x");
+            //System.out.println("x");
             //System.out.println(x);
-            TouchDownCallBack(x,y);
+            TouchMoveCallBack(x,y);
             float count = event.getPointerCount();
-
+          for(int i=0;i<count;i++){
+             // System.out.println(i);
+             // System.out.println(event.getX(i));
+          }
             if(event.getAction()==MotionEvent.ACTION_UP){
 
-
+                TouchDownCallBack(x,y,0);
             }
             if(event.getAction()==MotionEvent.ACTION_DOWN){
-
+                TouchDownCallBack(x,y,1);
 
             }
 
@@ -109,13 +114,6 @@ class GLView extends GLSurfaceView {
             if(event.getAction() == MotionEvent.ACTION_UP){
 
             }
-
-            //mRenderer.TouchX = x;
-            //mRenderer.TouchY = y;
-            //mRenderer.MultiTouchX = tx;
-            //mRenderer.MultiTouchY = ty;
-
-
 
             if (event.getAction() == MotionEvent.ACTION_MOVE) {
 

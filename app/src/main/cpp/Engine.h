@@ -13,9 +13,11 @@ public:
     void init();
     void render();
     void surfaceChanged(int w,int h);
-    void TouchCallBack(float x,float y);
+    void TouchCallBack(float x,float y,int action);
+    void TouchMoveCallBack();
 
 private:
+    PhysicsManager physicsManager;
     Scene scene;
 };
 

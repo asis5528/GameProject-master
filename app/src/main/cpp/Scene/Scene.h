@@ -10,12 +10,20 @@
 #include "../OpenGL/OpenGLMesh.h"
 #include "../Object/Object.h"
 #include "../Animation/Animation.h"
+#include "../Physics/PhysicsManager.h"
+#include "../Gui/Gui.h"
+
 
 class Scene {
 public:
+    PhysicsManager *physicsManager;
+    std::vector<Animation> animations;
+    std::vector<Mesh> meshes;
+    std::vector<Texture> textures;
     void init();
     void Draw();
     void resize(unsigned int width,unsigned int height);
+    void TouchMove();
     void pushGLMesh(OpenGLMesh & mesh){
         GLmeshes.push_back(mesh);
     }
@@ -31,7 +39,15 @@ public:
     void pushAnimation(Animation &animation){
         animations.push_back(animation);
     }
-
+    Object *getObjects(int index){
+        return &objects[index];
+    }
+    Animation *getAnimation(int index){
+        return &animations[index];
+    }
+    int getObjectSize(){
+        return  objects.size();
+    }
 private:
     //unsigned int VAO;
    // unsigned int VBO;
@@ -42,10 +58,10 @@ private:
     glm::mat4 proj;
     std::vector<Object> objects;
     std::vector<OpenGLMesh> GLmeshes;
-    std::vector<Mesh> meshes;
-    std::vector<Texture> textures;
+    Gui gui;
     std::vector<Shader> shaders;
-    std::vector<Animation> animations;
+
+
 
   //  glm::vec3 camPos;
    // float time = 0.;

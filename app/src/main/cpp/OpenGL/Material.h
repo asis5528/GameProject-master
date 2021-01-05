@@ -8,6 +8,7 @@
 
 #include "../shader_manager.h"
 #include "../Mesh/Mesh.h"
+#include "OpenGLTexture.h"
 
 class Material {
 public:

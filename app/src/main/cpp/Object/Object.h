@@ -11,20 +11,28 @@
 #include "../OpenGL/OpenGLMesh.h"
 #include "../OpenGL/Material.h"
 #include "../Animation/Animation.h"
+#include "../Animation/Animator.h"
 #include <glm/glm.hpp>
+class Scene;
 class Object {
 public:
     std::string name;
+    Scene *scene;
     unsigned int primitiveID;
     Material mat;
     float animationTime;
+    Animator animator;
     glm::vec3 position = glm::vec3(0.0);
     glm::vec3 scale = glm::vec3(0.01);
     glm::vec3 rotation = glm::vec3(0.);
+    glm::vec3 dimension;
+    glm::vec3 minBounds;
+    glm::vec3 maxBounds;
     std::vector<unsigned int> textureID;
     std::vector<unsigned int>animationIDs;
-
+    glm::mat4 transformationMatrix;
     void init(unsigned int primitiveIndex,std::string nam,Material &material);
+    void updateTransformation();
     void Render(OpenGLMesh &mesh);
     void processAnimation(Mesh& Mesh, Animation& anim);
     void pushTextureID(unsigned int ID){

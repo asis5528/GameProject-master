@@ -5,9 +5,8 @@
 #include "OpenGLMesh.h"
 
 
-void OpenGLMesh::init(std::vector<Vertex> &vertices, std::vector<unsigned int> &indices,std::vector<VertexBoneData> &bones) {
-    indicesSize = indices.size();
-    glGenVertexArrays(1, &VAO);
+
+void OpenGLMesh::initVertices(std::vector<Vertex> &vertices, std::vector<unsigned int> &indices) {
     glGenBuffers(1, &VBO);
     glGenBuffers(1, &EBO);
     // bind the Vertex Array Object first, then bind and set vertex buffer(s), and then configure vertex attributes(s).
@@ -29,19 +28,35 @@ void OpenGLMesh::init(std::vector<Vertex> &vertices, std::vector<unsigned int> &
 
 
     glBindBuffer(GL_ARRAY_BUFFER, 0);
+}
+
+void OpenGLMesh::initBones(std::vector<VertexBoneData> &bones) {
+    unsigned int VBO1;
+    glGenBuffers(1, &VBO1);
+    glBindBuffer(GL_ARRAY_BUFFER, VBO1);
+    glBufferData(GL_ARRAY_BUFFER, bones.size() * sizeof(VertexBoneData), &bones[0], GL_STATIC_DRAW);
+    glEnableVertexAttribArray(3);
+    glVertexAttribIPointer(3, 4, GL_UNSIGNED_INT, sizeof(VertexBoneData), (void*)0);
+    glEnableVertexAttribArray(4);
+    glVertexAttribPointer(4, 4, GL_FLOAT, GL_FALSE, sizeof(VertexBoneData), (void*)16);
+    glBindBuffer(GL_ARRAY_BUFFER, 0);
+}
+
+void OpenGLMesh::init(std::vector<Vertex> &vertices, std::vector<unsigned int> &indices,std::vector<VertexBoneData> &bones) {
+    indicesSize = indices.size();
+    glGenVertexArrays(1, &VAO);
+    initVertices(vertices,indices);
     //checking if any bones is there,if we will allocate vertex buffer for bone data
     if(bones.size()>0){
-        unsigned int VBO1;
-        glGenBuffers(1, &VBO1);
-        glBindBuffer(GL_ARRAY_BUFFER, VBO1);
-        glBufferData(GL_ARRAY_BUFFER, bones.size() * sizeof(VertexBoneData), &bones[0], GL_STATIC_DRAW);
-        glEnableVertexAttribArray(3);
-        glVertexAttribIPointer(3, 4, GL_UNSIGNED_INT, sizeof(VertexBoneData), (void*)0);
-        glEnableVertexAttribArray(4);
-        glVertexAttribPointer(4, 4, GL_FLOAT, GL_FALSE, sizeof(VertexBoneData), (void*)16);
-        glBindBuffer(GL_ARRAY_BUFFER, 0);
+        initBones(bones);
     }
-
+    //unbinding vao
+    glBindVertexArray(0);
+}
+void OpenGLMesh::init(std::vector<Vertex> &vertices, std::vector<unsigned int> &indices) {
+    indicesSize = indices.size();
+    glGenVertexArrays(1, &VAO);
+    initVertices(vertices,indices);
     //unbinding vao
     glBindVertexArray(0);
 }

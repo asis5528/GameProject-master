@@ -25,19 +25,14 @@ struct VertexBoneData
     float Weights[4] = { 0.0,0.0,0.0,0.0 };
 
 };
-struct Texture{
-    std::string name;
-    unsigned int id;
-    GLenum type = GL_TEXTURE_2D;
-    unsigned int width;
-    unsigned int height;
-    GLenum format = GL_RGBA;
-};
+
 struct Mesh{
     std::vector<Vertex> vertices;
     std::vector<unsigned int> indices;
     std::vector<VertexBoneData> bones;
     std::vector<BoneInfo> boneInfo;
+    glm::vec3 minBounds;
+    glm::vec3 maxBounds;
     Mesh(){
 
     }
@@ -46,7 +41,23 @@ struct Mesh{
         this->indices = indices;
         this->bones = bones;
     }
-
+    void disposeVertices(){
+        vertices.clear();
+    }
+    void disposeAll(){
+        vertices.clear();
+        indices.clear();
+        bones.clear();
+        boneInfo.clear();
+    }
+    void disposeMesh(){
+        vertices.clear();
+        indices.clear();
+    }
+    void disposeBone(){
+        bones.clear();
+        boneInfo.clear();
+    }
 
 
 };

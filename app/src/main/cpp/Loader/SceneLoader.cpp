@@ -15,13 +15,15 @@
 #include "../OpenGL/Material.h"
 #include "../Animation/AnimationData.h"
 #include "../Animation/Animation.h"
-
+#include "../OpenGL/OpenGLTexture.h"
 void SceneLoader::loadPrimitive(std::string path,Scene *sc) {
     path+=".pribln";
     AAsset* file = AAssetManager_open(mgr,path.c_str(),AASSET_MODE_BUFFER);
     size_t fileLength = AAsset_getLength(file);
     char* modelData = new char[fileLength];
     AAsset_read(file, modelData, fileLength);
+    modelData[fileLength] = 0;
+    AAsset_close(file);
     std::istringstream iff(modelData);
     std::string nam;
     std::string n;
@@ -37,6 +39,8 @@ void SceneLoader::loadPrimitive(std::string path,Scene *sc) {
     std::string line;
 
     int state = 0;
+    glm::vec3 minBounds;
+    glm::vec3 maxBounds;
     while (std::getline(iff, line)) {
         std::string n;
         iff >> n;
@@ -80,12 +84,13 @@ void SceneLoader::loadPrimitive(std::string path,Scene *sc) {
             std::getline(iff, line2);
             std::istringstream iss(line2);
             float boneData;
+            if(n!=""){
             boneData = std::stof(n);
             boneDatas.push_back(boneData);
             while (iss >> boneData) {
                 boneDatas.push_back(boneData);
             }
-
+            }
             state = 4;
 
         }
@@ -125,6 +130,7 @@ void SceneLoader::loadPrimitive(std::string path,Scene *sc) {
         }
         if (n == "vertexDatas") {
             state = 1;
+            iff >> minBounds.x; iff >> minBounds.y; iff >> minBounds.z; iff >> maxBounds.x; iff >> maxBounds.y; iff >> maxBounds.z;
 
         }
     }
@@ -157,11 +163,14 @@ void SceneLoader::loadPrimitive(std::string path,Scene *sc) {
     }
 
     Mesh mesh = Mesh(verts,indices,bones);
+    mesh.minBounds = minBounds;
+    mesh.maxBounds = maxBounds;
     mesh.boneInfo=boneInfo;
 
     sc->pushMesh(mesh);
     OpenGLMesh openGlMesh;
     openGlMesh.init(mesh.vertices,mesh.indices,mesh.bones);
+    mesh.disposeMesh();
     sc->pushGLMesh(openGlMesh);
     //sc->pushGLMesh()
 }
@@ -175,7 +184,8 @@ static void loadAnimation(std::string path,Animation &animation) {
     size_t fileLength = AAsset_getLength(file);
     char* modelData = new char[fileLength];
     AAsset_read(file, modelData, fileLength);
-
+    modelData[fileLength] = 0;
+    AAsset_close(file);
     std::istringstream iff(modelData);
     std::string line;
     //AnimationData adata;
@@ -326,6 +336,8 @@ void SceneLoader::loadSceneData(std::string path,Scene *sc) {
     size_t fileLength = AAsset_getLength(file);
     char* modelData = new char[fileLength];
     AAsset_read(file, modelData, fileLength);
+    modelData[fileLength] = 0;
+    AAsset_close(file);
     std::istringstream iff(modelData);
     unsigned int NObjects;
     unsigned int NPrimitives;
@@ -393,6 +405,8 @@ void SceneLoader::loadSceneData(std::string path,Scene *sc) {
             glm::vec3 pos;
             glm::vec3 scale;
             glm::vec3 rotation;
+            glm::vec3 minBounds;
+            glm::vec3 maxBounds;
             unsigned int primitiveIndex;
             unsigned int animationSize = 0;
             unsigned int animationID = 0;
@@ -409,6 +423,12 @@ void SceneLoader::loadSceneData(std::string path,Scene *sc) {
             iss >> scale.x;
             iss >> scale.y;
             iss >> scale.z;
+            iss >> minBounds.x;
+            iss >> minBounds.y;
+            iss >> minBounds.z;
+            iss >> maxBounds.x;
+            iss >> maxBounds.y;
+            iss >> maxBounds.z;
             iss >> primitiveIndex;
             iss >> animationSize;
             for(unsigned int i=0;i<animationSize;i++){
@@ -441,14 +461,17 @@ void SceneLoader::loadSceneData(std::string path,Scene *sc) {
             iss >> def.environmentTexture;
             iss >> def.irradianceTexture;
             Object object;
+            object.scene = sc;
             object.init(primitiveIndex,name,def);
             object.position = pos;
             object.rotation = rotation;
             object.scale = scale;
+            object.dimension = glm::vec3();
             object.seTexturesID(textureIDS);
             if(animationSize>0){
                 object.animationIDs.push_back(animationID);
             }
+
             sc->pushObjects(object);
 
 
@@ -479,6 +502,8 @@ unsigned int SceneLoader::LoadTextureData(const char *path, int &width, int &hei
     size_t fileLength = AAsset_getLength(file);
     buf.resize(fileLength);
     int64_t  readSize = AAsset_read(file,buf.data(),buf.size());
+    buf[fileLength] = 0;
+    AAsset_close(file);
     unsigned int textureID;
     glGenTextures(1, &textureID);
     stbi_set_flip_vertically_on_load(0);

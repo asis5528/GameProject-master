@@ -4,12 +4,15 @@
 
 #include <glm/ext/quaternion_common.hpp>
 #include <glm/gtx/quaternion.hpp>
+#include <android/log.h>
 #include "Animation.h"
+#include "Animator.h"
+#include "../Inputs/Touch.h"
 
 void Animation::initAction() {
     AnimationAction defaultAction;
     defaultAction.name = "defaultAction";
-    defaultAction.range = glm::vec2(0.0, duration*30);
+    defaultAction.range = glm::vec2(0.0, duration);
     actions.push_back(defaultAction);
     /*
     defaultAction.name = "idle";
@@ -45,80 +48,87 @@ void Animation::initAction() {
     actions.push_back(defaultAction);
 }
 
-void Animation::BoneTransform(float &time,unsigned int act1Index,unsigned int act2Index,float blend) {
+void Animation::BoneTransform(Animator &animator) {
     glm::mat4 identity(1.0);
-    actionIndex = act1Index;
-    blendAction = act2Index;
-    Blendfactor = blend;
-    float range = actions[actionIndex].range.y - actions[actionIndex].range.x;
-    float range2 = actions[blendAction].range.y - actions[blendAction].range.x;
-    actions[actionIndex].timer = fmod(time, range);
-    actions[blendAction].timer = fmod(time, range2);
-    info.clear();
-    readAnimation((actions[actionIndex].timer + actions[actionIndex].range.x) / fps, adata,identity);
+ //   actionIndex = act1Index;
+   // blendAction = act2Index;
+  //  Blendfactor = blend;
+    float range = actions[animator.actionIndex].range.y - actions[animator.actionIndex].range.x;
+    float range2 = actions[animator.blendAction].range.y - actions[animator.blendAction].range.x;
+    if(animator.Blendfactor <0.001){
+        actions[animator.blendAction].timer = 0.0;
+    }
+    //actions[animator.actionIndex].timer = fmod(animator.time, range);
+    actions[animator.actionIndex].timer+=0.5*actions[animator.actionIndex].incremationDirection;
+    actions[animator.blendAction].timer +=0.5*actions[animator.blendAction].incremationDirection;
+    if( actions[animator.actionIndex].playMode==0){
+        actions[animator.actionIndex].timer = fmod( actions[animator.actionIndex].timer, range);
+    }else if(actions[animator.actionIndex].playMode==1){
+        if(abs(actions[animator.actionIndex].timer-range)<0.001){
+            actions[animator.actionIndex].incremationDirection = -1.0;
+        }else if(actions[animator.actionIndex].timer<0){
+            actions[animator.actionIndex].incremationDirection = 1.0;
+        }
+    }
+    if( actions[animator.blendAction].playMode==0){
+        actions[animator.blendAction].timer = fmod( actions[animator.blendAction].timer, range2);
+    }else if(actions[animator.blendAction].playMode==1){
+        if(abs(actions[animator.blendAction].timer-range2)<1.001){
+            actions[animator.blendAction].incremationDirection = 0.0;
+        }else if(actions[animator.blendAction].timer<1){
+            actions[animator.blendAction].incremationDirection = 1.0;
+        }
+    }
+    animator.AnimatedMatrices.clear();
+    readAnimation((actions[animator.actionIndex].timer + actions[animator.actionIndex].range.x),(actions[animator.blendAction].timer + actions[animator.blendAction].range.x), adata.childAnimationData[0],identity,animator);
 }
 
-void Animation::readAnimation(float time, AnimationData& data, const glm::mat4& Parentmatrix) {
+void Animation::applyTransformation(Animator &animator,glm::mat4 transformation) {
+
+}
+void Animation::readAnimation(float time, float time2,AnimationData& data, const glm::mat4& Parentmatrix,Animator &animator) {
     glm::mat4 globalMatrix(1.0);
-    bool n1 = data.name == "";
-    bool n2 = data.name == "Armature";
-    if (!(n2||n1)) {
-
-        float time2 = (actions[blendAction].timer + actions[blendAction].range.x) / fps;
-
-        float TicksPerSecond = (float)(ticksperSec != 0 ? ticksperSec : 25.0f);
-        //std::cout << "Time0 :" << TicksPerSecond << "\n";
-        float TimeInTicks = time * TicksPerSecond;
-        //	std::cout << "Time1 :" << TimeInTicks << "\n";
-        //std::cout << "dura :" << data.duration << "\n";
-        //std::cout << "dura2 :" << data.animationTransformation.at(data.animationTransformation.size() - 1).time << "\n";
         float n =duration - data.animationTransformation.at(0).time;
-        //std::cout << "n : " << n << "\n";
-        float AnimationTime = fmod(TimeInTicks, n);
-        float atime2 = fmod(time2, n);
+        time += data.animationTransformation.at(0).time;
+        time2+= data.animationTransformation.at(0).time;
 
-        AnimationTime += data.animationTransformation.at(0).time;
-        atime2+= data.animationTransformation.at(0).time;
-        //std::cout << "AnimationTime : " << AnimationTime << "\n";
-        //AnimationTime = 0.;
-        //std::cout << "Timea :" << AnimationTime << "\n";
-        //std::cout << "Time1 :" << data.animationTransformation.at(1).time << "\n";
-
-        //std::cout << "Time :" << AnimationTime << "\n";
         glm::vec3 pos;
-        CalcInterpolatedPosition(pos, AnimationTime, data);
+        CalcInterpolatedPosition(pos, time, data);
         glm::vec3 pos2;
-        CalcInterpolatedPosition(pos2, atime2, data);
+        CalcInterpolatedPosition(pos2, time2, data);
 
 
         pos = data.animationTransformation[0].position;
-        //	pos = data.animationTransformation[0].position;
+        //pos = data.animationTransformation[0].position;
         glm::vec3 sc = data.animationTransformation[0].scale;
         glm::mat4 trans(1.0);
         glm::mat4 scale(1.0);
         glm::quat q;
-        CalcInterpolatedRotation(q, AnimationTime, data);
+        CalcInterpolatedRotation(q, time, data);
         glm::quat q2;
-        CalcInterpolatedRotation(q2, atime2, data);
-        glm::quat fina = glm::slerp(q, q2, Blendfactor);
+        CalcInterpolatedRotation(q2, time2, data);
+        glm::quat fina = glm::slerp(q, q2, animator.Blendfactor);
         fina = glm::normalize(fina);
-
         glm::mat4 rotmat = glm::toMat4(fina);
+        if(data.name==animator.boneName){
+
+            rotmat = animator.TransformationMatrix*rotmat;
+
+        }
         trans = glm::translate(trans, glm::vec3(pos.x, pos.y, pos.z));
         scale = glm::scale(scale, glm::vec3(sc.x, sc.y, sc.z));
         rotmat = trans * rotmat * scale;
         globalMatrix = Parentmatrix * rotmat;
         //	Parentmatrix = rotmat;
-        BoneProcessedMat inf;
-        inf.name = data.name;
-        inf.transformedBone = globalMatrix;
-        info.push_back(inf);
+        BoneProcessedMat boneInfo;
+        boneInfo.name = data.name;
+        boneInfo.transformedBone = globalMatrix;
+        animator.AnimatedMatrices.push_back(boneInfo);
 
 
-    }
     for (int i = 0; i < data.childAnimationData.size(); i++) {
 
-        readAnimation(time, data.childAnimationData[i], globalMatrix);
+        readAnimation(time,time2, data.childAnimationData[i], globalMatrix,animator);
     }
     //	std::cout << "Time  " << AnimationTime << "\n";
 }

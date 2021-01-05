@@ -4,21 +4,29 @@
 
 #include "Engine.h"
 #include "Scene/Scene.h"
+#include "Physics/PhysicsManager.h"
 
 void Engine::init() {
+
+
+    physicsManager.initPhysics();
+    scene.physicsManager = &physicsManager;
     scene.init();
 
 }
 
 void Engine::render() {
+
     scene.Draw();
+
 }
 
 void Engine::surfaceChanged(int w, int h)  {
     scene.resize(w,h);
 }
-void Engine::TouchCallBack(float x,float y){
-        
-    __android_log_print(ANDROID_LOG_INFO,"print","x %f\n",x);
-    __android_log_print(ANDROID_LOG_INFO,"print","y %f\n",y);
+void Engine::TouchCallBack(float x,float y,int action){
+
+}
+void Engine::TouchMoveCallBack() {
+
 }

@@ -33,15 +33,6 @@ public:
 
         char* vShaderCode = new char[fileLength];
         AAsset_read(file, vShaderCode, fileLength);
-
-        std::string line;
-        std::string v(vShaderCode);
-        std::istringstream iss(vShaderCode);
-
-        while(std::getline(iss,line)){
-
-
-        }
         vShaderCode[fileLength] = 0;
 
 
@@ -50,17 +41,17 @@ public:
 
 
 
+        AAsset_close(file);
+
+
         AAsset* file1 = AAssetManager_open(mgr,
                                           fragmentPath, AASSET_MODE_BUFFER);
         size_t fileLength1 = AAsset_getLength(file1);
         char* fShaderCode = new char[fileLength1];
         AAsset_read(file1, fShaderCode, fileLength1);
         fShaderCode[fileLength1] = 0;
+        AAsset_close(file1);
 
-        // char* vShaderCode = lod->LoadtoChar(a);
-
-
-         //char* fShaderCode = lod->LoadtoChar(a);
         // 2. compile shaders
         unsigned int vertex, fragment;
         // vertex shader
@@ -73,6 +64,8 @@ public:
         glShaderSource(fragment, 1, &fShaderCode, NULL);
         glCompileShader(fragment);
         checkCompileErrors(fragment, "FRAGMENT",fragmentPath);
+        vShaderCode[0]=0;
+        fShaderCode[0]=0;
         // if geometry shader is given, compile geometry shader
         unsigned int geometry;
         if (geometryPath != nullptr)

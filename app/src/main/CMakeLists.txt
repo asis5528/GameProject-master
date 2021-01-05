@@ -9,7 +9,11 @@ cmake_minimum_required(VERSION 3.4.1)
 # or SHARED, and provides the relative paths to its source code.
 # You can define multiple libraries, and CMake builds them for you.
 # Gradle automatically packages shared libraries with your APK.
-include_directories(cpp/glm )
+include_directories(cpp/glm cpp/Include/ )
+
+
+
+set(BULLET_LIB_DIR "${CMAKE_CURRENT_SOURCE_DIR}/libs/")
 
 #set(ASSIMP_DIR "${CMAKE_CURRENT_SOURCE_DIR}/libs/Assimp_libs/cmake/debug/")
 
@@ -20,23 +24,14 @@ add_library( # Sets the name of the library.
         SHARED
 
         # Provides a relative path to your source file(s).
-        cpp/native-lib.cpp cpp/Engine.cpp cpp/Scene/Scene.cpp cpp/OpenGL/OpenGLMesh.cpp cpp/Loader/SceneLoader.cpp cpp/Object/Object.cpp cpp/OpenGL/Material.cpp cpp/Animation/AnimationData.cpp cpp/Animation/Animation.cpp)
-#add_library(libassimp STATIC IMPORTED)
-#set_target_properties(libassimp PROPERTIES IMPORTED_LOCATION ${CMAKE_SOURCE_DIR}/jni/Assimp_libs/cmake/release/${ANDROID_ABI}/libassimp.a)
+        cpp/native-lib.cpp cpp/Engine.cpp cpp/Scene/Scene.cpp cpp/OpenGL/OpenGLMesh.cpp cpp/Loader/SceneLoader.cpp cpp/Object/Object.cpp cpp/OpenGL/Material.cpp cpp/Animation/AnimationData.cpp cpp/Animation/Animation.cpp cpp/Inputs/Touch.cpp cpp/OpenGL/OpenGLTexture.cpp cpp/Physics/PhysicsManager.cpp cpp/Gui/Button.cpp cpp/Gui/Gui.cpp)
+add_library(bullet_lib STATIC IMPORTED)
 
-#add_library(android_jniiosystem-lib STATIC IMPORTED)
-##set_target_properties(android_jniiosystem-lib PROPERTIES IMPORTED_LOCATION ${CMAKE_SOURCE_DIR}/jni/Assimp_libs/cmake/release/${ANDROID_ABI}/libandroid_jniiosystem.a)
+set_target_properties(bullet_lib PROPERTIES IMPORTED_LOCATION
+        ${BULLET_LIB_DIR}/${ANDROID_ABI}/libBullet.a)
 
-#add_library(assimp SHARED IMPORTED)
-#set_target_properties(assimp PROPERTIES IMPORTED_LOCATION ${CMAKE_CURRENT_SOURCE_DIR}/libs/Assimp_libs/cmake/debug/${ANDROID_ABI}/libassimpd.so)
-#message(STATUS "path: ${assimp}")
-#set_property(TARGET assimp PROPERTY IMPORTED_LOCATION ${CMAKE_CURRENT_SOURCE_DIR}/libs/Assimp_libs/cmake/debug/${ANDROID_ABI}/libassimpd.so)
+message(STATUS "path: ${bullet_lib}")
 
-# Searches for a specified prebuilt library and stores the path as a
-# variable. Because CMake includes system libraries in the search path by
-# default, you only need to specify the name of the public NDK library
-# you want to add. CMake verifies that the library exists before
-# completing its build.
 
 find_library( # Sets the name of the path variable.
         log-lib
@@ -61,8 +56,8 @@ target_link_libraries( # Specifies the target library.
         # Links the target library to the log library
         # included in the NDK.
         ${log-lib}
-        #libassimp
-        #android_jniiosystem-lib
+        bullet_lib
+
         )
 
 #add_library(assimp SHARED IMPORTED)

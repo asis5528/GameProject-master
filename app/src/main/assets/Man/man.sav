@@ -1,0 +1,25 @@
+NObjects 3
+NPrimitives 3
+NAnimations 1
+NLights 0
+#prim
+boss
+Plane
+Cube_Cube.001
+#animations
+animation0
+#lights
+#textures
+2D man.png
+2D box-texture.png
+2D floor_tiles_06_diff_1k.jpg
+2D floor_tiles_06_rough_1k.jpg
+2D floor_tiles_06_spec_1k.jpg
+2D sky.png
+cubemap environmentTex
+cubemap irradianceTex
+cubemap prefilterTex
+#objects
+boss:Teeth_Down_Geo 0 0 0 0 -0 0 0.025 0.025 0.025 -96.5116 -0.209167 -24.9231 96.5116 199.254 33.8582 0 1 0 1 0 1 1 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 
+Plane -0.0620372 0.1071 0.0401678 -90 -0 0 10 10 10 -1 -1 0 1 1 0 1 0 5 2 3 4 7 8 2 1 1 1 1 1 1 0 0 0 0 0 0 2 1 0 4 4 3 
+Cube_Cube.001 0.135099 1.4238 7.60739 0 -0 0 0.0857406 0.0857406 0.0857406 -13.3602 -13.3602 -13.3602 13.3602 13.3602 13.3602 2 0 1 1 1 1 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 
