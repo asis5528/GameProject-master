@@ -24,7 +24,7 @@ add_library( # Sets the name of the library.
         SHARED
 
         # Provides a relative path to your source file(s).
-        cpp/native-lib.cpp cpp/Engine.cpp cpp/Scene/Scene.cpp cpp/OpenGL/OpenGLMesh.cpp cpp/Loader/SceneLoader.cpp cpp/Object/Object.cpp cpp/OpenGL/Material.cpp cpp/Animation/AnimationData.cpp cpp/Animation/Animation.cpp cpp/Inputs/Touch.cpp cpp/OpenGL/OpenGLTexture.cpp cpp/Physics/PhysicsManager.cpp cpp/Gui/Button.cpp cpp/Gui/Gui.cpp)
+        cpp/native-lib.cpp cpp/Engine.cpp cpp/Scene/Scene.cpp cpp/OpenGL/OpenGLMesh.cpp cpp/Loader/SceneLoader.cpp cpp/Object/Object.cpp cpp/OpenGL/Material.cpp cpp/Animation/AnimationData.cpp cpp/Animation/Animation.cpp cpp/Inputs/Touch.cpp cpp/OpenGL/OpenGLTexture.cpp cpp/Physics/PhysicsManager.cpp cpp/Gui/Button.cpp cpp/Gui/Gui.cpp cpp/GameLogic/Character.cpp)
 add_library(bullet_lib STATIC IMPORTED)
 
 set_target_properties(bullet_lib PROPERTIES IMPORTED_LOCATION

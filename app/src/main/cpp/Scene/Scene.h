@@ -12,6 +12,7 @@
 #include "../Animation/Animation.h"
 #include "../Physics/PhysicsManager.h"
 #include "../Gui/Gui.h"
+#include "../GameLogic/Character.h"
 
 
 class Scene {
@@ -59,6 +60,7 @@ private:
     std::vector<Object> objects;
     std::vector<OpenGLMesh> GLmeshes;
     Gui gui;
+    std::vector<Character> characters;
     std::vector<Shader> shaders;
 
 
