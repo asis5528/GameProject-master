@@ -6,8 +6,8 @@
 #define MY_APPLICATION_MESH_H
 #include <GLES3/gl3.h>
 #include "../glm/glm/glm.hpp"
-#include "../../../../../../../Sdk/ndk-bundle/toolchains/llvm/prebuilt/windows-x86_64/sysroot/usr/include/c++/v1/vector"
 #include <vector>
+
 
 
 struct Vertex{

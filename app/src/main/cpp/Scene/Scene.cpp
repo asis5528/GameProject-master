@@ -136,16 +136,10 @@ void Scene::Draw() {
             }
             float finalAngle = abs(angle+3.1415/2.);
             if(angle<-(3.1415/2.0)){
-                objects[0].rotation.y+=20;
-                if(objects[0].rotation.y>180){
-                    objects[0].rotation.y = 180;
-                }
+                characters[0].lookRight();
 
             }else{
-                objects[0].rotation.y-=20;
-                if(objects[0].rotation.y<0){
-                    objects[0].rotation.y=0;
-                }
+                characters[0].lookLeft();
 
             }
 

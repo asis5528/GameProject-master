@@ -5,7 +5,7 @@
 #include <android/asset_manager.h>
 #include <sstream>
 #include "SceneLoader.h"
-#include "../../../../../../../Sdk/ndk-bundle/toolchains/llvm/prebuilt/windows-x86_64/sysroot/usr/include/android/log.h"
+#include <android/log.h>
 #include "../AssetsLoader.h"
 #include <string>
 #include <glm/ext.hpp>

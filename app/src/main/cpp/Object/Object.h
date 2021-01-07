@@ -6,7 +6,7 @@
 #define MY_APPLICATION_OBJECT_H
 
 
-#include "../../../../../../../Sdk/ndk-bundle/toolchains/llvm/prebuilt/windows-x86_64/sysroot/usr/include/c++/v1/string"
+#include <string>
 #include "../shader_manager.h"
 #include "../OpenGL/OpenGLMesh.h"
 #include "../OpenGL/Material.h"
